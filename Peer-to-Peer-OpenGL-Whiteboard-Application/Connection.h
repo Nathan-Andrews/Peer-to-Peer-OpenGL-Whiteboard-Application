@@ -17,4 +17,7 @@ class Connection {
 
         void read();
         void write();
+        void write(std::string);
+
+        void start();
 };

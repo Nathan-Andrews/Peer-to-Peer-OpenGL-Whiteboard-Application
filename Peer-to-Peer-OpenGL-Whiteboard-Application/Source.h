@@ -4,6 +4,8 @@
 #include <iostream>
 #include <thread>
 #include <string>
+#include <memory>
+#include <vector>
 
 // library includes
 #include <boost/asio.hpp>
@@ -11,3 +13,4 @@
 
 // local includes
 #include "Connection.h"
+#include "Server.h"

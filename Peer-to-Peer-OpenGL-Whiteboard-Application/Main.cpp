@@ -11,14 +11,10 @@ int main() {
 
         if (mode == 1) {
             // Server mode
-            Connection connection("12345");
+            Server("12345");
+
         } else if (mode == 2) {
             // Client mode
-            // std::cout << "Enter server IP: ";
-            // std::string server_ip;
-            // std::cin >> server_ip;
-            // std::cin.ignore(); // Clear the newline character
-
             Connection connection("127.0.0.1","12345");
         } else {
             std::cerr << "Invalid mode. Exiting." << std::endl;

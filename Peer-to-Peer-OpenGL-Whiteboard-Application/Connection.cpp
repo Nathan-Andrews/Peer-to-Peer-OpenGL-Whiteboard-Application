@@ -25,6 +25,14 @@ void Connection::write() {
     }
 }
 
+void Connection::write(std::string message) {
+    boost::asio::write(socket, boost::asio::buffer(message));
+}
+
+void Connection::start() {
+    std::thread(&Connection::read, this).detach();
+}
+
 Connection::Connection(const std::string ip, const std::string port) : socket(io_context) { 
     try {
         tcp::resolver resolver(io_context);
@@ -59,3 +67,5 @@ Connection::Connection(std::string port) : socket(io_context) {
         std::cerr << "Connection error: " << e.what() << std::endl;
     }
 }
+
+Connection::Connection(tcp::socket socket) : socket(std::move(socket)) {};
