@@ -1,6 +1,6 @@
 #include "Source.h"
 
-void Connection::readFromSocket() {
+void Connection::read() {
     try {
         char buffer[1024];
         while (true) {
@@ -12,7 +12,7 @@ void Connection::readFromSocket() {
     }
 }
 
-void Connection::writeToSocket() {
+void Connection::write() {
     try {
         std::string message;
 
@@ -33,8 +33,8 @@ Connection::Connection(const std::string ip, const std::string port) : socket(io
         boost::asio::connect(socket, endpoints);
         std::cout << "Connected to the server!" << std::endl;
 
-        std::thread readThread(&Connection::readFromSocket, this);
-        writeToSocket();
+        std::thread readThread(&Connection::read, this);
+        write();
         readThread.join();
     }
     catch (const boost::system::system_error& e) {
@@ -51,8 +51,8 @@ Connection::Connection(std::string port) : socket(io_context) {
     acceptor.accept(socket);
     std::cout << "Connection established!" << std::endl;
 
-    std::thread readThread(&Connection::readFromSocket, this);
-    writeToSocket();
+    std::thread readThread(&Connection::read, this);
+    write();
     readThread.join();
     }
     catch (const boost::system::system_error& e) {
