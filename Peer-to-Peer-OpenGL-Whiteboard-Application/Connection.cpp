@@ -52,16 +52,16 @@ Connection::Connection(const std::string ip, const std::string port) : socket(io
 
 Connection::Connection(std::string port) : socket(io_context) {
     try {
-    tcp::acceptor acceptor(io_context, tcp::endpoint(tcp::v4(), std::stoi(port)));
+        tcp::acceptor acceptor(io_context, tcp::endpoint(tcp::v4(), std::stoi(port)));
 
-    std::cout << "Waiting for connection..." << std::endl;
+        std::cout << "Waiting for connection..." << std::endl;
 
-    acceptor.accept(socket);
-    std::cout << "Connection established!" << std::endl;
+        acceptor.accept(socket);
+        std::cout << "Connection established!" << std::endl;
 
-    std::thread readThread(&Connection::read, this);
-    write();
-    readThread.join();
+        std::thread readThread(&Connection::read, this);
+        write();
+        readThread.join();
     }
     catch (const boost::system::system_error& e) {
         std::cerr << "Connection error: " << e.what() << std::endl;
