@@ -15,9 +15,11 @@ class Connection {
         Connection(tcp::socket socket);
 
 
-        void read();
+        std::string read();
         void write();
         void write(std::string);
 
         void start();
+
+        static int getUniquePort();
 };

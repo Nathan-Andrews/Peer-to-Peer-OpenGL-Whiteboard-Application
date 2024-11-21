@@ -1,7 +1,7 @@
 #include "Source.h"
 
-Server::Server(std::string port) {
-    tcp::acceptor acceptor(io_context, tcp::endpoint(tcp::v4(), std::stoi(port)));
+Server::Server(int port) {
+    tcp::acceptor acceptor(io_context, tcp::endpoint(tcp::v4(), port));
     std::cout << "Server listening on port " << port << std::endl;
 
     std::mutex clients_mutex;
@@ -23,6 +23,8 @@ Server::Server(std::string port) {
         client->start();
     }
 }
+
+Server::Server() : Server(Connection::getUniquePort()) {}
 
 
 void Server::HandleInput() {

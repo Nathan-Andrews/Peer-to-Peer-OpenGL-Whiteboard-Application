@@ -5,7 +5,8 @@ class Server {
     std::vector<std::shared_ptr<Connection>> clients;
 
     public:
-        Server(std::string);
+        Server(int);
+        Server();
 
         void HandleInput();
 };
