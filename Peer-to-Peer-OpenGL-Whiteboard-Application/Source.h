@@ -16,7 +16,7 @@
 #include <GLFW/glfw3.h>
 
 // local includes
-#include "ConcurrentQueue.h"
+#include "ConcurrentContainer.h"
 #include "Connection.h"
 #include "Server.h"
 #include "ConnectionManager.h"

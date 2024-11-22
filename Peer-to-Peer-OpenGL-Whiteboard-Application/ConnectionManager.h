@@ -3,11 +3,11 @@
 class ConnectionManager {
     Connection hostConnection;
 
-    ConcurrentQueue<Connection*> connections;
+    ConcurrentContainer<Connection*> connections;
 
     Connection* openConnection;
 
-    ConcurrentQueue<std::string> messageBuffer;
+    ConcurrentContainer<std::string> messageBuffer;
 
     public:
         ConnectionManager();

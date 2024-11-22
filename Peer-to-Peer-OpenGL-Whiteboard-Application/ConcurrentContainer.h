@@ -2,7 +2,7 @@
 
 // threadsafe queue class
 template <typename T>
-class ConcurrentQueue {
+class ConcurrentContainer {
     private:
         std::queue<T> queue;
         mutable std::mutex mtx;
