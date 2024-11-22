@@ -1,5 +1,7 @@
 #include "Source.h"
 
+#define LOCALHOST "127.0.0.1"
+
 using boost::asio::ip::tcp;
 
 class Connection {
