@@ -35,10 +35,16 @@ void Server::handleClientThreadFunction(tcp::socket socket) {
     auto client = std::make_shared<Connection>(std::move(socket));
 
     ClientSession* clientSession = new ClientSession(client);
-    client->write("hello world");
 
     {
         std::lock_guard<std::mutex> lock(clients_mutex);
+
+        for (ClientSession* itr : clients) {
+            if (itr->getPort() == 0) continue;
+
+            client->write(std::to_string(itr->getPort()));
+        }
+
         clients.push_back(clientSession);
     }
     
