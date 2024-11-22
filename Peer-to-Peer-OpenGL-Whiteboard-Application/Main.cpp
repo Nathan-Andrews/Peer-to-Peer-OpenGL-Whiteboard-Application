@@ -1,8 +1,5 @@
 #include "Source.h"
 
-using boost::asio::ip::tcp;
-
-
 int inputThread(ConnectionManager& manager) {
     std::string message;
 
@@ -23,21 +20,17 @@ int main() {
 
         if (mode == 1) {
             // Server mode
-            Server(12345);
-            // Connection* connection = new Connection("12345");
-            // manager.addConnection(connection);
-
+            Server(11111);
         } else if (mode == 2) {
             // Client mode
             ConnectionManager manager;
-            // Connection* connection = new Connection("127.0.0.1","12345");
-            // manager.addConnection(connection);
 
-            // std::thread(inputThread,std::ref(manager)).detach();
-            // while (true) {
-            //     std::string message = manager.readNext();
-            //     std::cout << "recieved: " << message << std::endl;
-            // }
+            std::thread(inputThread,std::ref(manager)).detach();
+            while (true) {
+                std::string message = manager.readNext();
+                std::cout << "recieved: " << message << std::endl;
+            }
+
         } else {
             std::cerr << "Invalid mode. Exiting." << std::endl;
         }
