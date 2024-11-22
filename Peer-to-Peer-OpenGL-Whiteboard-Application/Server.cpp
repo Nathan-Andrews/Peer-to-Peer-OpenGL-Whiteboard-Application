@@ -7,8 +7,8 @@ ClientSession::ClientSession(CONNECTION_PTR client) : clientConnection(client), 
 bool ClientSession::waitForMessage() {
     try {
         std::string message = clientConnection->read();
-        std::cout << "read port: " << message << std::endl;
         openPort = std::stoi(message);
+        std::cout << "recieved new client port: " << openPort << std::endl;
 
         return true;
     }
