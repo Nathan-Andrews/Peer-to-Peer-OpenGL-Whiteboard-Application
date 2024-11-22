@@ -13,15 +13,13 @@ class ConnectionManager {
         ConnectionManager();
 
 
-        std::string readNext();
-        void send(std::string);
+        std::string Read();
+        void Write(std::string);
 
     private:
-        // void addToBuffer(std::string);
-        // void handleRead();
-        void addConnection(Connection*);
+        void AddConnection(Connection*);
 
-        void connectionThreadFunction(Connection*);
-        void serverCommunicationThreadFunction();
-        void acceptNewConnectionsThreadFunction();
+        void ConnectionThreadFunction(Connection*);
+        void ServerCommunicationThreadFunction();
+        void AcceptNewConnectionsThreadFunction();
 };

@@ -22,17 +22,17 @@ class Connection {
         Connection(tcp::socket socket);
 
 
-        std::string read();
+        std::string Read();
         [[deprecated("Use write(std::string) instead.  This method is only for testing")]]
-        void write();
-        void write(std::string);
+        void Write();
+        void Write(std::string);
 
-        void start();
+        void Start();
 
-        void waitForConnection();
+        void WaitForConnection();
 
-        std::string getPort();
+        std::string GetPort();
     
-        boost::asio::ip::tcp::acceptor& getAcceptor();
     protected:
+        boost::asio::ip::tcp::acceptor& GetAcceptor();
 };

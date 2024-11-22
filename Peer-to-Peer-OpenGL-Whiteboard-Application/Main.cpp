@@ -6,7 +6,7 @@ int inputThread(ConnectionManager& manager) {
     while (true) {
         std::getline(std::cin, message);
         
-        manager.send(message);
+        manager.Write(message);
     }
 }
 
@@ -27,7 +27,7 @@ int main() {
 
             std::thread(inputThread,std::ref(manager)).detach();
             while (true) {
-                std::string message = manager.readNext();
+                std::string message = manager.Read();
                 std::cout << "recieved: " << message << std::endl;
             }
 

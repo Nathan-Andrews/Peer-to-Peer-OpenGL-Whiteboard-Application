@@ -1,12 +1,10 @@
 #include "Source.h"
 
-ClientSession::ClientSession(CONNECTION_PTR client) : clientConnection(client), openPort(0) {
-    // std::thread(&ClientSession::sessionThreadFunction, this).detach();
-}
+ClientSession::ClientSession(CONNECTION_PTR client) : clientConnection(client), openPort(0) {}
 
-bool ClientSession::waitForMessage() {
+bool ClientSession::WaitForMessage() {
     try {
-        std::string message = clientConnection->read();
+        std::string message = clientConnection->Read();
         openPort = std::stoi(message);
         std::cout << "recieved new client port: " << openPort << std::endl;
 
@@ -27,11 +25,11 @@ Server::Server(int port) {
         acceptor.accept(socket);
         std::cout << "New client connected!" << std::endl;
 
-        std::thread(&Server::handleClientThreadFunction, this, std::move(socket)).detach();
+        std::thread(&Server::HandleClientThreadFunction, this, std::move(socket)).detach();
     }
 }
 
-void Server::handleClientThreadFunction(tcp::socket socket) {
+void Server::HandleClientThreadFunction(tcp::socket socket) {
     auto client = std::make_shared<Connection>(std::move(socket));
 
     ClientSession* clientSession = new ClientSession(client);
@@ -40,15 +38,15 @@ void Server::handleClientThreadFunction(tcp::socket socket) {
         std::lock_guard<std::mutex> lock(clients_mutex);
 
         for (ClientSession* itr : clients) {
-            if (itr->getPort() == 0) continue;
+            if (itr->GetPort() == 0) continue;
 
-            client->write(std::to_string(itr->getPort()));
+            client->Write(std::to_string(itr->GetPort()));
         }
 
         clients.push_back(clientSession);
     }
     
-    while (clientSession->waitForMessage()) {}
+    while (clientSession->WaitForMessage()) {}
 
     std::cout << "client disconnected" << std::endl;
 

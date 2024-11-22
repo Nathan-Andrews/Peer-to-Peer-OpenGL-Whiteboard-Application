@@ -7,9 +7,9 @@ class ClientSession {
     public:
         ClientSession(CONNECTION_PTR);
 
-        int getPort() {return openPort;};
+        int GetPort() {return openPort;};
 
-        bool waitForMessage();
+        bool WaitForMessage();
 };
 
 class Server {
@@ -22,5 +22,5 @@ class Server {
         Server(int);
     
     private:
-        void handleClientThreadFunction(tcp::socket);
+        void HandleClientThreadFunction(tcp::socket);
 };

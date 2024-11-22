@@ -5,25 +5,25 @@ ConnectionManager::ConnectionManager() : hostConnection(LOCALHOST,"11111") {
 
     // ask for all peers
     // connect with all peers
-    std::thread(&ConnectionManager::serverCommunicationThreadFunction, this).detach();
+    std::thread(&ConnectionManager::ServerCommunicationThreadFunction, this).detach();
 
     // ask for current board
 
     // send host details on server
-    std::thread(&ConnectionManager::acceptNewConnectionsThreadFunction, this).detach();
+    std::thread(&ConnectionManager::AcceptNewConnectionsThreadFunction, this).detach();
 }
 
-void ConnectionManager::addConnection(Connection* connection) {
+void ConnectionManager::AddConnection(Connection* connection) {
     connections.Add(connection);
 
     std::cout << "added connection" << std::endl;
 
-    std::thread(&ConnectionManager::connectionThreadFunction,this,connection).detach();
+    std::thread(&ConnectionManager::ConnectionThreadFunction,this,connection).detach();
 }
 
-void ConnectionManager::connectionThreadFunction(Connection* connection) {
+void ConnectionManager::ConnectionThreadFunction(Connection* connection) {
     while (true) {
-        std::string message = connection->read();
+        std::string message = connection->Read();
 
         if (message == "") break;
 
@@ -31,51 +31,51 @@ void ConnectionManager::connectionThreadFunction(Connection* connection) {
     }
 
     connections.Erase(connection);
-    std::cout << "peer " << connection->getPort() << " disconnected\n";
+    std::cout << "peer " << connection->GetPort() << " disconnected\n";
     delete connection;
 }
 
 // thread to communicate with the server
 // server will send ports of users we should connect to
 // then we wait to detect when the server closes
-void ConnectionManager::serverCommunicationThreadFunction() {
+void ConnectionManager::ServerCommunicationThreadFunction() {
     while (true) {
-        std::string message = hostConnection.read();
+        std::string message = hostConnection.Read();
 
         if (message == "") break;
 
         Connection* connection = new Connection(LOCALHOST,message);
 
-        addConnection(connection);
+        AddConnection(connection);
     }
 
     std::cout << "disconnected from server" << std::endl;
 }
 
-void ConnectionManager::acceptNewConnectionsThreadFunction() {
+void ConnectionManager::AcceptNewConnectionsThreadFunction() {
     while (true) {
         // create socket for another client to connect to
         openConnection = new Connection();
 
         // send open port to host server
-        std::cout << "waiting on port " << openConnection->getPort() << std::endl;
-        hostConnection.write(openConnection->getPort());
+        std::cout << "waiting on port " << openConnection->GetPort() << std::endl;
+        hostConnection.Write(openConnection->GetPort());
 
         // wait for another client to connect
-        openConnection->waitForConnection();
+        openConnection->WaitForConnection();
 
         // add to the list of open connections
-        addConnection(openConnection);
+        AddConnection(openConnection);
     }
 }
 
-std::string ConnectionManager::readNext() {
+std::string ConnectionManager::Read() {
     return messageBuffer.Take();
 }
 
-void ConnectionManager::send(std::string message) {
+void ConnectionManager::Write(std::string message) {
     connections.Iterate([message](Connection* connection) {
         std::cout << "sending message\n";
-        connection->write(message);
+        connection->Write(message);
     });
 }

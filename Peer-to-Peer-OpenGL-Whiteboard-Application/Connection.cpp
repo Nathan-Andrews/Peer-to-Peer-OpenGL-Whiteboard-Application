@@ -1,6 +1,6 @@
 #include "Source.h"
 
-std::string Connection::read() {
+std::string Connection::Read() {
     try {
         std::string buffer(1024, '\0');
 
@@ -15,7 +15,7 @@ std::string Connection::read() {
     return "";
 }
 
-void Connection::write() {
+void Connection::Write() {
     try {
         std::string message;
 
@@ -27,13 +27,13 @@ void Connection::write() {
     }
 }
 
-void Connection::write(std::string message) {
+void Connection::Write(std::string message) {
     boost::asio::write(socket, boost::asio::buffer(message));
 }
 
-void Connection::start() {
-    std::thread readThread(&Connection::read, this);
-    write();
+void Connection::Start() {
+    std::thread readThread(&Connection::Read, this);
+    Write();
     readThread.join();
 }
 
@@ -60,10 +60,10 @@ Connection::Connection() : socket(io_context), acceptor(io_context) {
         boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), 0);
 
         // Open the acceptor with the specified endpoint
-        getAcceptor().open(endpoint.protocol());
-        getAcceptor().bind(endpoint);
+        GetAcceptor().open(endpoint.protocol());
+        GetAcceptor().bind(endpoint);
 
-        port = std::to_string(getAcceptor().local_endpoint().port());
+        port = std::to_string(GetAcceptor().local_endpoint().port());
     }
     catch (const boost::system::system_error& e) {
         std::cerr << "Connection error: " << e.what() << std::endl;
@@ -72,21 +72,21 @@ Connection::Connection() : socket(io_context), acceptor(io_context) {
 
 Connection::Connection(tcp::socket socket) : socket(std::move(socket)) {};
 
-void Connection::waitForConnection() {
+void Connection::WaitForConnection() {
     // Start listening for incoming connections
-    getAcceptor().listen();
+    GetAcceptor().listen();
 
     std::cout << "Waiting for connection..." << std::endl;
 
-    getAcceptor().accept(socket);
+    GetAcceptor().accept(socket);
     std::cout << "Connection established!" << std::endl;
 }
 
-std::string Connection::getPort() {
+std::string Connection::GetPort() {
     return port;
 }
 
-boost::asio::ip::tcp::acceptor& Connection::getAcceptor() {
+boost::asio::ip::tcp::acceptor& Connection::GetAcceptor() {
     if (!acceptor.has_value()) throw "acceptor is null";
 
     return acceptor.value();
