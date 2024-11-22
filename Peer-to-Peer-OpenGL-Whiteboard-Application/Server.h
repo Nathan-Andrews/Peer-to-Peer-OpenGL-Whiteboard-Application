@@ -1,15 +1,16 @@
 #include "Source.h"
 
-#define CONNECTION_PTR std::shared_ptr<Connection>
 class ClientSession {
-    CONNECTION_PTR clientConnection;
+    friend class Server;
+    
+    Connection* clientConnection;
     int openPort;
-    public:
-        ClientSession(CONNECTION_PTR);
 
-        int GetPort() {return openPort;};
+    ClientSession(Connection*);
 
-        bool WaitForMessage();
+    int GetPort() {return openPort;};
+
+    bool WaitForMessage();
 };
 
 class Server {

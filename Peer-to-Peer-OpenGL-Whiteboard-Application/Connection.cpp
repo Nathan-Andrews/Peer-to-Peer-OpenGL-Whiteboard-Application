@@ -2,7 +2,7 @@
 
 std::string Connection::Read() {
     try {
-        std::string buffer(1024, '\0');
+        std::string buffer(MAX_BUFFER_SIZE, '\0');
 
         std::size_t length = socket.read_some(boost::asio::buffer(buffer));
 
@@ -15,26 +15,8 @@ std::string Connection::Read() {
     return "";
 }
 
-void Connection::Write() {
-    try {
-        std::string message;
-
-        while (true) {
-            std::getline(std::cin, message);
-            boost::asio::write(socket, boost::asio::buffer(message));
-        }
-    } catch (const std::exception& e) {
-    }
-}
-
 void Connection::Write(std::string message) {
     boost::asio::write(socket, boost::asio::buffer(message));
-}
-
-void Connection::Start() {
-    std::thread readThread(&Connection::Read, this);
-    Write();
-    readThread.join();
 }
 
 Connection::Connection(const std::string ip, const std::string port) : socket(io_context), port(port) { 
@@ -87,7 +69,7 @@ std::string Connection::GetPort() {
 }
 
 boost::asio::ip::tcp::acceptor& Connection::GetAcceptor() {
-    if (!acceptor.has_value()) throw "acceptor is null";
+    if (!acceptor.has_value()) throw "acceptor is null!";
 
     return acceptor.value();
 }

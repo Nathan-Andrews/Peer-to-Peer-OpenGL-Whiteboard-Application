@@ -1,6 +1,6 @@
 #include "Source.h"
 
-ClientSession::ClientSession(CONNECTION_PTR client) : clientConnection(client), openPort(0) {}
+ClientSession::ClientSession(Connection* client) : clientConnection(client), openPort(0) {}
 
 bool ClientSession::WaitForMessage() {
     try {
@@ -30,7 +30,7 @@ Server::Server(int port) {
 }
 
 void Server::HandleClientThreadFunction(tcp::socket socket) {
-    auto client = std::make_shared<Connection>(std::move(socket));
+    Connection* client = new Connection(std::move(socket));
 
     ClientSession* clientSession = new ClientSession(client);
 

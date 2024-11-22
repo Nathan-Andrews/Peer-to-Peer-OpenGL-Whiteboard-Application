@@ -58,7 +58,7 @@ void ConnectionManager::AcceptNewConnectionsThreadFunction() {
         openConnection = new Connection();
 
         // send open port to host server
-        std::cout << "waiting on port " << openConnection->GetPort() << std::endl;
+        std::cout << " waiting on port " << openConnection->GetPort() << std::endl;
         hostConnection.Write(openConnection->GetPort());
 
         // wait for another client to connect
@@ -75,7 +75,6 @@ std::string ConnectionManager::Read() {
 
 void ConnectionManager::Write(std::string message) {
     connections.Iterate([message](Connection* connection) {
-        std::cout << "sending message\n";
         connection->Write(message);
     });
 }
