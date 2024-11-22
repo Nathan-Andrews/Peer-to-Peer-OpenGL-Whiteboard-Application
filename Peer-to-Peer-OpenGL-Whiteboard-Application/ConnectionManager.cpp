@@ -22,11 +22,17 @@ void ConnectionManager::addConnection(Connection* connection) {
 }
 
 void ConnectionManager::connectionThreadFunction(Connection* connection) {
-    std::cout << "starting connection thread" << std::endl;
-
     while (true) {
-        messageBuffer.Add(connection->read());
+        std::string message = connection->read();
+
+        if (message == "") break;
+
+        messageBuffer.Add(message);
     }
+
+    connections.Erase(connection);
+    std::cout << "peer " << connection->getPort() << " disconnected\n";
+    delete connection;
 }
 
 // thread to communicate with the server
