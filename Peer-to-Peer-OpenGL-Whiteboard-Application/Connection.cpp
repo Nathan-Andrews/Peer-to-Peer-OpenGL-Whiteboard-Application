@@ -37,7 +37,7 @@ void Connection::start() {
     readThread.join();
 }
 
-Connection::Connection(const std::string ip, const std::string port) : socket(io_context) { 
+Connection::Connection(const std::string ip, const std::string port) : socket(io_context), port(port) { 
     try {
         tcp::resolver resolver(io_context);
         auto endpoints = resolver.resolve(ip, port);
@@ -50,14 +50,20 @@ Connection::Connection(const std::string ip, const std::string port) : socket(io
     }
 }
 
-Connection::Connection(std::string port) : socket(io_context) {
+Connection::Connection(std::string port) : socket(io_context), port(port) {
+    acceptor = boost::asio::ip::tcp::acceptor(io_context, tcp::endpoint(tcp::v4(), std::stoi(port)));
+}
+
+Connection::Connection() : socket(io_context), acceptor(io_context) {
     try {
-        tcp::acceptor acceptor(io_context, tcp::endpoint(tcp::v4(), std::stoi(port)));
+        // Specify the endpoint with port 0 for an arbitrary port
+        boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), 0);
 
-        std::cout << "Waiting for connection..." << std::endl;
+        // Open the acceptor with the specified endpoint
+        getAcceptor().open(endpoint.protocol());
+        getAcceptor().bind(endpoint);
 
-        acceptor.accept(socket);
-        std::cout << "Connection established!" << std::endl;
+        port = std::to_string(getAcceptor().local_endpoint().port());
     }
     catch (const boost::system::system_error& e) {
         std::cerr << "Connection error: " << e.what() << std::endl;
@@ -66,23 +72,22 @@ Connection::Connection(std::string port) : socket(io_context) {
 
 Connection::Connection(tcp::socket socket) : socket(std::move(socket)) {};
 
-int Connection::getUniquePort() {
-    try {
-        // Create an I/O context
-        boost::asio::io_context io_context;
+void Connection::waitForConnection() {
+    // Start listening for incoming connections
+    getAcceptor().listen();
 
-        // Create an endpoint with any available port
-        boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), 0);
+    std::cout << "Waiting for connection..." << std::endl;
 
-        // Open and bind the socket to the endpoint
-        boost::asio::ip::tcp::acceptor acceptor(io_context);
-        acceptor.open(endpoint.protocol());
-        acceptor.bind(endpoint);
+    getAcceptor().accept(socket);
+    std::cout << "Connection established!" << std::endl;
+}
 
-        // Get the assigned port number
-        return acceptor.local_endpoint().port();
-    } catch (const std::exception& e) {
-        std::cerr << "Error finding available port: " << e.what() << std::endl;
-        return -1; // Indicate failure
-    }
+std::string Connection::getPort() {
+    return port;
+}
+
+boost::asio::ip::tcp::acceptor& Connection::getAcceptor() {
+    if (!acceptor.has_value()) throw "acceptor is null";
+
+    return acceptor.value();
 }

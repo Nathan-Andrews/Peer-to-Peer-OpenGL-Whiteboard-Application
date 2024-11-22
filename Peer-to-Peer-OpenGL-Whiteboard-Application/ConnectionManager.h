@@ -3,14 +3,15 @@
 class ConnectionManager {
     Connection hostConnection;
 
-    std::vector<Connection*> connections;
+    ConcurrentQueue<Connection*> connections;
+
+    Connection* openConnection;
 
     ConcurrentQueue<std::string> messageBuffer;
 
     public:
         ConnectionManager();
 
-        void addConnection(Connection*);
 
         std::string readNext();
         void send(std::string);
@@ -18,6 +19,9 @@ class ConnectionManager {
     private:
         // void addToBuffer(std::string);
         // void handleRead();
+        void addConnection(Connection*);
 
         void connectionThreadFunction(Connection*);
+        void serverCommunicationThreadFunction();
+        void acceptNewConnectionsThreadFunction();
 };
