@@ -43,16 +43,6 @@ class ConcurrentQueue {
             return queue.size();
         }
 
-        std::vector<T> Snapshot() const {
-            std::lock_guard<std::mutex> lock(mtx);
-            std::vector<T> snapshot;
-            std::queue<T> temp = queue;
-            while (!temp.empty()) {
-                snapshot.push_back(temp.front());
-                temp.pop();
-            }
-            return snapshot;
-        }
 
         void Iterate(std::function<void(const T&)> func) const {
             auto snapshot = Snapshot();
@@ -61,7 +51,7 @@ class ConcurrentQueue {
             }
         }
         
-        bool erase(const T& value) {
+        bool Erase(const T& value) {
             std::lock_guard<std::mutex> lock(mtx);
 
             // Temporary queue to hold non-matching elements
@@ -82,5 +72,17 @@ class ConcurrentQueue {
             queue.swap(tempQueue);
 
             return found;
+        }
+
+    private:
+        std::vector<T> Snapshot() const {
+            std::lock_guard<std::mutex> lock(mtx);
+            std::vector<T> snapshot;
+            std::queue<T> temp = queue;
+            while (!temp.empty()) {
+                snapshot.push_back(temp.front());
+                temp.pop();
+            }
+            return snapshot;
         }
 };
