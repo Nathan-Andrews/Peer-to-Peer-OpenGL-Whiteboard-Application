@@ -1,12 +1,25 @@
 #include "Source.h"
 
+ClientSession::ClientSession(CONNECTION_PTR client) : clientConnection(client), openPort(0) {
+    // std::thread(&ClientSession::sessionThreadFunction, this).detach();
+}
+
+bool ClientSession::waitForMessage() {
+    try {
+        std::string message = clientConnection->read();
+        std::cout << "read port: " << message << std::endl;
+        openPort = std::stoi(message);
+
+        return true;
+    }
+    catch (...) {
+        return false;
+    }
+}
+
 Server::Server(int port) {
     tcp::acceptor acceptor(io_context, tcp::endpoint(tcp::v4(), port));
     std::cout << "Server listening on port " << port << std::endl;
-
-    std::mutex clients_mutex;
-
-    std::thread(&Server::HandleInput,this).detach();
 
     while (true) {
         tcp::socket socket(io_context);
@@ -14,31 +27,27 @@ Server::Server(int port) {
         acceptor.accept(socket);
         std::cout << "New client connected!" << std::endl;
 
-        auto client = std::make_shared<Connection>(std::move(socket));
-        {
-            std::lock_guard<std::mutex> lock(clients_mutex);
-            clients.push_back(client);
-        }
-
-        client->start();
+        std::thread(&Server::handleClientThreadFunction, this, std::move(socket)).detach();
     }
 }
 
-Server::Server() : Server(Connection::getUniquePort()) {}
+void Server::handleClientThreadFunction(tcp::socket socket) {
+    auto client = std::make_shared<Connection>(std::move(socket));
 
+    ClientSession* clientSession = new ClientSession(client);
+    client->write("hello world");
 
-void Server::HandleInput() {
-    try {
-        std::string message;
+    {
+        std::lock_guard<std::mutex> lock(clients_mutex);
+        clients.push_back(clientSession);
+    }
+    
+    while (clientSession->waitForMessage()) {}
 
-        while (true) {
-            std::getline(std::cin, message);
-            for (const auto& client : clients) {                
-                client->write(message);
-            }
+    std::cout << "client disconnected" << std::endl;
 
-        }
-    } catch (const std::exception& e) {
-        std::cerr << "Write error: " << e.what() << std::endl;
+    {
+        std::lock_guard<std::mutex> lock(clients_mutex);
+        clients.erase(std::remove(clients.begin(), clients.end(), clientSession), clients.end());
     }
 }

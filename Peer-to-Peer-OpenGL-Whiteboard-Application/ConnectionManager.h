@@ -1,7 +1,7 @@
 #include "Source.h"
 
 class ConnectionManager {
-    // Connection hostConnection;
+    Connection hostConnection;
 
     std::vector<Connection*> connections;
 

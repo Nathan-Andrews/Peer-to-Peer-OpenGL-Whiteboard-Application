@@ -10,7 +10,6 @@ std::string Connection::read() {
 
         return buffer;
     } catch (const std::exception& e) {
-        std::cerr << "Read error: " << e.what() << std::endl;
     }
 
     return "";
@@ -25,7 +24,6 @@ void Connection::write() {
             boost::asio::write(socket, boost::asio::buffer(message));
         }
     } catch (const std::exception& e) {
-        std::cerr << "Write error: " << e.what() << std::endl;
     }
 }
 

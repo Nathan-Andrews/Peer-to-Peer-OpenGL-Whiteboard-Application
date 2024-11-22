@@ -1,8 +1,10 @@
 #include "Source.h"
 
-ConnectionManager::ConnectionManager() {
+ConnectionManager::ConnectionManager() : hostConnection("127.0.0.1","12345") {
     // connect to host server
 
+    std::cout << hostConnection.read() << std::endl;
+    hostConnection.write("11100");
     // ask for all peers
 
     // connect with all peers
@@ -10,7 +12,7 @@ ConnectionManager::ConnectionManager() {
     // ask for current board
 
     // send host details on server
-    throw "method not implemented";
+    // throw "method not implemented";
 }
 
 void ConnectionManager::addConnection(Connection* connection) {
