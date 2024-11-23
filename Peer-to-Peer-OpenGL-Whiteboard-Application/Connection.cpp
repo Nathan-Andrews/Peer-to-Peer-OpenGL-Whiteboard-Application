@@ -16,7 +16,11 @@ std::string Connection::Read() {
 }
 
 void Connection::Write(std::string message) {
-    boost::asio::write(socket, boost::asio::buffer(message));
+    try {
+        boost::asio::write(socket, boost::asio::buffer(message));
+    } catch (...) {
+
+    }
 }
 
 Connection::Connection(HOST ip, PORT port) : socket(io_context), port(port) { 
@@ -26,8 +30,7 @@ Connection::Connection(HOST ip, PORT port) : socket(io_context), port(port) {
         
         boost::asio::connect(socket, endpoints);
         std::cout << "Connected to the server!" << std::endl;
-    }
-    catch (const boost::system::system_error& e) {
+    } catch (const boost::system::system_error& e) {
         std::cerr << "Connection error: " << e.what() << std::endl;
     }
 }
@@ -46,8 +49,7 @@ Connection::Connection() : socket(io_context), acceptor(io_context) {
         GetAcceptor().bind(endpoint);
 
         port = GetAcceptor().local_endpoint().port();
-    }
-    catch (const boost::system::system_error& e) {
+    } catch (const boost::system::system_error& e) {
         std::cerr << "Connection error: " << e.what() << std::endl;
     }
 }
