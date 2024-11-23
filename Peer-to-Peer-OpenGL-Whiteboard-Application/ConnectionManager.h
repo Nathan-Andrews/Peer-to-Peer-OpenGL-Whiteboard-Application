@@ -15,6 +15,8 @@ class ConnectionManager {
 
         std::string Read();
         void Write(std::string);
+        void Read(char* buf);
+        void Write(char* buf);
 
 
         bool isConnected = true;

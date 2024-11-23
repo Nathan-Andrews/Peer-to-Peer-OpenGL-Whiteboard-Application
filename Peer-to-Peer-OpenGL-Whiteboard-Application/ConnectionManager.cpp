@@ -86,3 +86,12 @@ void ConnectionManager::Write(std::string message) {
         connection->Write(message);
     });
 }
+
+void ConnectionManager::Read(char* buf) {
+    std::string data = Read();
+    std::strcpy(buf, data.c_str());
+}
+
+void ConnectionManager::Write(char* buf) {
+    Write(std::string(buf));
+}
