@@ -15,7 +15,7 @@ bool ClientSession::WaitForMessage() {
     }
 }
 
-Server::Server(int port) {
+Server::Server(PORT port) {
     tcp::acceptor acceptor(io_context, tcp::endpoint(tcp::v4(), port));
     std::cout << "Server listening on port " << port << std::endl;
 

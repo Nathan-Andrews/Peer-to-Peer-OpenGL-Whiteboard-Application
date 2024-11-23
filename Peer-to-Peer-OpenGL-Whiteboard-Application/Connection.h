@@ -12,13 +12,13 @@ class Connection {
         tcp::socket socket;
         std::optional<boost::asio::ip::tcp::acceptor> acceptor;
 
-        std::string port;
+        PORT port;
 
         // ip, port
-        Connection(std::string, std::string);
+        Connection(HOST, PORT);
         // port
         [[deprecated("Use Connection() instead, which assigns an arbitrary port")]]
-        Connection(std::string);
+        Connection(PORT);
         Connection();
         Connection(tcp::socket socket);
 
@@ -30,7 +30,7 @@ class Connection {
 
         void WaitForConnection();
 
-        std::string GetPort();
+        PORT GetPort();
     
         boost::asio::ip::tcp::acceptor& GetAcceptor();
 };

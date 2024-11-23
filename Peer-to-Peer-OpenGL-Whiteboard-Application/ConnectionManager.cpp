@@ -1,6 +1,6 @@
 #include "Source.h"
 
-ConnectionManager::ConnectionManager() : hostConnection(LOCALHOST,"11111") {
+ConnectionManager::ConnectionManager(HOST host,PORT port) : hostConnection(host,port) {
     // connect to host server
 
     // ask for all peers
@@ -44,7 +44,9 @@ void ConnectionManager::ServerCommunicationThreadFunction() {
 
         if (message == "") break;
 
-        Connection* connection = new Connection(LOCALHOST,message);
+        PORT port = std::stoi(message);
+
+        Connection* connection = new Connection(LOCALHOST,port);
 
         AddConnection(connection);
     }
@@ -67,7 +69,7 @@ void ConnectionManager::AcceptNewConnectionsThreadFunction() {
 
         // send open port to host server
         std::cout << " waiting on port " << openConnection->GetPort() << std::endl;
-        hostConnection.Write(openConnection->GetPort());
+        hostConnection.Write(std::to_string(openConnection->GetPort()));
 
         // wait for another client to connect
         openConnection->WaitForConnection();

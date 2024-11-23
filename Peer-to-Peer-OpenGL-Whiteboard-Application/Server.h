@@ -20,7 +20,7 @@ class Server {
     std::mutex clients_mutex;
 
     public:
-        Server(int);
+        Server(PORT);
     
     private:
         void HandleClientThreadFunction(tcp::socket);

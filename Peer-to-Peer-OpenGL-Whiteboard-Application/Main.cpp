@@ -23,7 +23,7 @@ int main() {
             Server(11111);
         } else if (mode == 2) {
             // Client mode
-            ConnectionManager manager;
+            ConnectionManager manager(LOCALHOST,11111);
 
             std::thread(inputThread,std::ref(manager)).detach();
             while (true) {

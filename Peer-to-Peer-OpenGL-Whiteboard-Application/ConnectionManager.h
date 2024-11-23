@@ -10,7 +10,7 @@ class ConnectionManager {
     ConcurrentContainer<std::string> messageBuffer;
 
     public:
-        ConnectionManager();
+        ConnectionManager(HOST,PORT);
 
 
         std::string Read();
