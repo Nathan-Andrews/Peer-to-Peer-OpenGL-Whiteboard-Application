@@ -20,7 +20,7 @@ int main() {
 
         if (mode == 1) {
             // Server mode
-            Server(11111);
+            Server();
         } else if (mode == 2) {
             // Client mode
             ConnectionManager manager(LOCALHOST,11111);

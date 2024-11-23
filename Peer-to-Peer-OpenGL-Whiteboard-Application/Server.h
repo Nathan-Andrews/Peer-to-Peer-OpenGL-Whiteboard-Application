@@ -25,9 +25,40 @@ class Server {
 
     std::mutex clients_mutex; // Mutex to ensure thread-safe access to the clients list.
 
+    HOST host;  // the LAN address of the server
+    PORT port;  // the port of the server
+
 public:
-    // Constructor: Initializes the server to listen on a specified port.
-    Server(PORT port);
+    // Constructor: Initializes the server to listen on an arbitrary port.
+    Server();
+
+    // 
+    PORT GetPort() {return port;}
+    HOST GetHost() {return host;}
+
+    // finds a LAN address of the computer
+    static HOST FindHostname() {
+        boost::asio::io_context io_context;
+
+        // Get the host name
+        std::string hostname = boost::asio::ip::host_name();
+
+        // Resolve host name to IP address
+        boost::asio::ip::tcp::resolver resolver(io_context);
+        boost::asio::ip::tcp::resolver::results_type endpoints = resolver.resolve(hostname, "");
+
+        // Iterate through results to find LAN IP address
+        for (const auto& entry : endpoints) {
+            auto addr = entry.endpoint().address();
+            // Only consider IPv4 non-loopback addresses
+            if (addr.is_v4() && !addr.is_loopback()) {
+                return addr.to_string();
+            }
+        }
+
+        throw "hostname not found";
+    }
+
 
 private:
     // Handles communication with a single client in a separate thread.
