@@ -2,6 +2,8 @@
 
 using boost::asio::ip::tcp;
 
+struct Host;
+
 // The Connection class represents a network connection that can act as either 
 // a client (outgoing connection) or a server (accepting incoming connections).
 class Connection {
@@ -15,10 +17,13 @@ private:
     tcp::socket socket;                // The socket used for communication.
     std::optional<tcp::acceptor> acceptor; // Optional acceptor for managing incoming connections (server mode).
 
-    PORT port; // The port associated with the connection or acceptor.
+    PORT port; // The ip and port associated with the connection or acceptor.
 
     // Constructor for initializing a client connection to a remote server.
-    Connection(HOST ip, PORT port);
+    Connection(IP ip, PORT port);
+
+    // Constructor for initializing a client connection to a remote server using a Host
+    Connection(Host host);
 
     // Constructor for initializing a server with a specific port.
     // Marked as deprecated because a constructor with an arbitrary port is preferred.

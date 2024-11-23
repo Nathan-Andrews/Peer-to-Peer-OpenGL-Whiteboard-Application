@@ -31,7 +31,7 @@ void Connection::Write(std::string message) {
 }
 
 // Constructor for establishing a connection to a remote server.
-Connection::Connection(HOST ip, PORT port) : socket(io_context), port(port) { 
+Connection::Connection(IP ip, PORT port) : socket(io_context), port(port) { 
     try {
         // Resolve the host and port to obtain endpoints
         tcp::resolver resolver(io_context);
@@ -45,6 +45,9 @@ Connection::Connection(HOST ip, PORT port) : socket(io_context), port(port) {
         std::cerr << "Connection error: " << e.what() << std::endl;
     }
 }
+
+// Constructor for establishing a connection to a remote server using a Host.
+Connection::Connection(Host host) : Connection(host.ip,host.port) {}
 
 // Constructor for initializing a server to listen on a specified port.
 Connection::Connection(PORT port) : socket(io_context), port(port) {

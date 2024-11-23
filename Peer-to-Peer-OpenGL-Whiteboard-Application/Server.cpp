@@ -2,7 +2,7 @@
 
 // Constructor for initializing a ClientSession with a given Connection.
 ClientSession::ClientSession(Connection* client) 
-    : clientConnection(client), openPort(0) {}
+    : clientConnection(client) {}
 
 // Waits for a message from the client, parsing it to obtain an open port.
 // Returns true if a message is successfully received and processed, false otherwise.
@@ -11,9 +11,10 @@ bool ClientSession::WaitForMessage() {
         // Read a message from the client connection.
         std::string message = clientConnection->Read();
 
-        // Convert the message into an integer (expected to be a port number).
-        openPort = std::stoi(message);
-        std::cout << "Received new client port: " << openPort << std::endl;
+        // parse message
+        host = Host(message);
+
+        std::cout << "Received new client port: " << host.port << std::endl;
 
         return true; // Successfully received and processed a message.
     } catch (...) {
@@ -23,15 +24,16 @@ bool ClientSession::WaitForMessage() {
 
 // Constructor for initializing the server to listen on an arbitrary port.
 // Accepts client connections in a loop, spawning a new thread for each client.
-Server::Server() {
+// Made to be used with an arbitrary port.  Only use a specific port during testing
+Server::Server(PORT _port) {
     // Create a TCP acceptor to listen on an arbitrary port.
-    tcp::acceptor acceptor(io_context, tcp::endpoint(tcp::v4(), 0));
+    tcp::acceptor acceptor(io_context, tcp::endpoint(tcp::v4(), _port));
     
     // Retrieve the automatically assigned port number
-    port = acceptor.local_endpoint().port();
+    host.port = acceptor.local_endpoint().port();
     // get the LAN IP
-    host = Server::FindHostname();
-    std::cout << "Server listening on " << host << ":" << port << std::endl;
+    host.ip = Server::FindIP();
+    std::cout << "Server listening on " << host.ip << ":" << host.port << std::endl;
 
     // Infinite loop to accept incoming client connections.
     while (true) {
@@ -63,7 +65,7 @@ void Server::HandleClientThreadFunction(tcp::socket socket) {
         for (ClientSession* itr : clients) {
             if (itr->GetPort() == 0) continue; // Skip clients without a valid port.
 
-            client->Write(std::to_string(itr->GetPort())); // Send the port.
+            client->Write(MakeHostPacket(itr->host)); // Send the ip and port.
         }
 
         // Add the new client session to the list of active clients.

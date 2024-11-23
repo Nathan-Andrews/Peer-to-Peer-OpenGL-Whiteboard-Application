@@ -1,8 +1,8 @@
 #include "Source.h"
 
 // Constructor: Initializes the ConnectionManager by connecting to the host server and setting up threads.
-ConnectionManager::ConnectionManager(HOST host, PORT port) 
-    : hostConnection(host, port) {
+ConnectionManager::ConnectionManager(IP ip, PORT port) 
+    : hostConnection(ip, port) {
     // Start a thread for communication with the host server.
     std::thread(&ConnectionManager::ServerCommunicationThreadFunction, this).detach();
 
@@ -52,9 +52,8 @@ void ConnectionManager::ServerCommunicationThreadFunction() {
         // Break the loop if the server closes the connection.
         if (message == "") break;
 
-        // Connect to the peer at the provided port.
-        PORT port = std::stoi(message);
-        Connection* connection = new Connection(LOCALHOST, port);
+        // Connect to the peer at the provided address and port.
+        Connection* connection = new Connection(Host(message));
 
         // Add the new peer connection to the connection list.
         AddConnection(connection);
@@ -79,7 +78,7 @@ void ConnectionManager::AcceptNewConnectionsThreadFunction() {
 
         // Notify the host server of the open port for new connections.
         std::cout << " waiting on port " << openConnection->GetPort() << std::endl;
-        hostConnection.Write(std::to_string(openConnection->GetPort()));
+        hostConnection.Write(Server::MakeHostPacket(Server::FindIP(),openConnection->GetPort()));
 
         // Wait for a client to connect.
         openConnection->AcceptConnection();

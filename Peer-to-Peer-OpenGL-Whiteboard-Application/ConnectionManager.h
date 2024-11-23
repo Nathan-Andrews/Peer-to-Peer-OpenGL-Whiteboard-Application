@@ -17,7 +17,7 @@ class ConnectionManager {
 
     public:
         // Constructor to initialize the ConnectionManager with a host and port.
-        ConnectionManager(HOST, PORT);
+        ConnectionManager(IP, PORT);
 
         // Reads the next message from any connected peer.
         std::string Read();
