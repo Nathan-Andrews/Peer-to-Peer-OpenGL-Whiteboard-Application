@@ -1,5 +1,10 @@
 #pragma once
 
+// visual studio config
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 // standard includess
 #include <iostream>
 #include <thread>
@@ -15,7 +20,7 @@
 #include <boost/asio.hpp>
 #include <GLFW/glfw3.h>
 
-// typedefs
+// type definitions
 typedef u_short PORT;
 typedef std::string HOST;
 
