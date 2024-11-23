@@ -39,14 +39,15 @@ class ClientSession {
     // Constructor: Initializes the client session with a given connection.
     ClientSession(Connection*);
 
-    // Returns the open port associated with this client session.
-    PORT GetPort() { return host.port; }
-    // returns the LAN ip of the client
-    IP GetIP() { return host.ip; }
-
     // Waits for a message from the client, processes it, and returns true if successful.
     // Returns false if an error occurs or the connection is closed.
     bool WaitForMessage();
+
+    public:
+        // Returns the open port associated with this client session.
+        PORT GetPort() { return host.port; }
+        // returns the LAN ip of the client
+        IP GetIP() { return host.ip; }
 };
 
 // The Server class manages multiple client connections and facilitates communication between them.
