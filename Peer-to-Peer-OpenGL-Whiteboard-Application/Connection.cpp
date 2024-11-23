@@ -64,6 +64,10 @@ void Connection::WaitForConnection() {
     std::cout << "Connection established!" << std::endl;
 }
 
+void Connection::Close() {
+    socket.close();
+}
+
 std::string Connection::GetPort() {
     return port;
 }

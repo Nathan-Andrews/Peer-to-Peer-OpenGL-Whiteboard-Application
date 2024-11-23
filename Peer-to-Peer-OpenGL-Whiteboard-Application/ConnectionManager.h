@@ -16,6 +16,9 @@ class ConnectionManager {
         std::string Read();
         void Write(std::string);
 
+
+        bool isConnected = true;
+
     private:
         void AddConnection(Connection*);
 

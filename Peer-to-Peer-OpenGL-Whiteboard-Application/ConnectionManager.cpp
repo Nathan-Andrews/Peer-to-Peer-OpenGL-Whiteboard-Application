@@ -50,6 +50,14 @@ void ConnectionManager::ServerCommunicationThreadFunction() {
     }
 
     std::cout << "disconnected from server" << std::endl;
+
+    // disconnect from all peers
+    while (connections.Size() > 0) {
+        Connection* connection = connections.Take();
+        connection->Close();
+    }
+
+    isConnected = false;
 }
 
 void ConnectionManager::AcceptNewConnectionsThreadFunction() {

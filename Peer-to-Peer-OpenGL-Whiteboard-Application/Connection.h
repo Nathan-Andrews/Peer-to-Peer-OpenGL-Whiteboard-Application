@@ -26,6 +26,8 @@ class Connection {
         std::string Read();
         void Write(std::string);
 
+        void Close();
+
         void WaitForConnection();
 
         std::string GetPort();
