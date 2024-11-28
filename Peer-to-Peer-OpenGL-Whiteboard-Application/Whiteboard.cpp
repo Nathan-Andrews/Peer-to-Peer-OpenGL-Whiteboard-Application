@@ -121,7 +121,8 @@ void Whiteboard::draw() {
     glDisable(GL_BLEND);
 }
 
-Whiteboard::Whiteboard() {
+Whiteboard::Whiteboard(std::string user) {
+    this->myId = user;
     activeWhiteboard = this;
 }
 

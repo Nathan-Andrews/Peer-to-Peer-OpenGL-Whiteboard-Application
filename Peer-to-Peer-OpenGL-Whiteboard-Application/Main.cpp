@@ -9,7 +9,9 @@ int main() {
     glfwMakeContextCurrent(window);
     if (glewInit() != GLEW_OK) return -1;
 
-    Whiteboard whiteboard;
+    //put the username that represents you.
+    //(maybe we need an actual id system)
+    Whiteboard whiteboard("me!");
     whiteboard.setWindow(window);
 
     // example of adding other user actions
@@ -18,6 +20,12 @@ int main() {
 
     // whiteboard class already handles your own user actions
     
+
+    // you can use the q button to close the window
+    //use [, ] to change brush size
+    // use up and down arrows to change transparency
+    // use 1, 2, 3 and 4 keys to change the color
+
     while (!glfwWindowShouldClose(window)) {
         whiteboard.render();
         glfwSwapBuffers(window);

@@ -34,7 +34,7 @@ private:
     void draw();
 
 public:
-    Whiteboard();
+    Whiteboard(std::string user);
     ~Whiteboard();
 
     void setWindow(GLFWwindow* newWindow);
