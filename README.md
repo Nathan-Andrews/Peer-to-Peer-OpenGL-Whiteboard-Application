@@ -19,9 +19,15 @@
 2. Install Boost *Note: this is likely already installed*
 
    a. install with brew `brew install boost`
-4. Install GLFW
+3. Install GLFW
 
    a. install with brew `brew install glfw`
+4. Install GLEW
+
+   a. install with brew `brew install glew`
+5. Install GLM
+
+   a. install with brew `brew install glm`
 
 
 ## Running
