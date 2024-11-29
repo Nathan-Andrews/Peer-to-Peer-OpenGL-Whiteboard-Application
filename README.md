@@ -8,20 +8,41 @@
    a. [Download](https://www.boost.org/users/history/version_1_86_0.html) the 1.86.0 version for windows
    
    b. Extract the contents of the downloaded zip into `C:\boost_1_86_0`
-4. Install GLFW
+3. Install GLFW
 
    a. [Download](https://glfw.org/download) the windows pre-compiled binaries
    
    b. Extract the contents of the downloaded zip into `C:\GLFW`
+4. Install GLEW
+
+   a. [Download](https://glew.sourceforge.net/) the windows pre-compiled binaries
+   
+   b. Extract the contents of the downloaded zip into `C:\GLEW`
+   
+![image-1](https://github.com/user-attachments/assets/d617eff4-4001-448a-ba5e-2b5108d9c54f)
+
+5. Install GLM
+
+   a. [Download](https://glm.g-truc.net/0.9.9/index.html) the windows pre-compiled binaries
+   
+   b. Extract the contents of the downloaded zip into `C:\GLM`
+   
+![image](https://github.com/user-attachments/assets/3c03097a-390f-4fc5-b5aa-9498ce22f3b8)
 
 ### Macos Setup
 1. Clone the repository
 2. Install Boost *Note: this is likely already installed*
 
    a. install with brew `brew install boost`
-4. Install GLFW
+3. Install GLFW
 
    a. install with brew `brew install glfw`
+4. Install GLEW
+
+   a. install with brew `brew install glew`
+5. Install GLM
+
+   a. install with brew `brew install glm`
 
 
 ## Running
