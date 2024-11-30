@@ -1,6 +1,4 @@
-#include "clientinterface.h"
-#include "ui_clientinterface.h"
-#include <QString>
+#include "Source.h"
 
 ClientInterface::ClientInterface(QWidget *parent)
     : QMainWindow(parent)

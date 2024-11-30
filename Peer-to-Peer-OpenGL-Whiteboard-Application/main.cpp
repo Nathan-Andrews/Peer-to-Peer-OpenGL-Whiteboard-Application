@@ -1,8 +1,9 @@
 //  Include the header file for the ClientInterface class, main GUI for application
-#include "clientinterface.h"
+#include "Source.h"
 
-// Include QApplication to handle application-wide settings and resources.
-#include <QApplication>
+// // Include QApplication to handle application-wide settings and resources.
+
+// #include "Source.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,4 +18,7 @@ int main(int argc, char *argv[])
 
     // The call to 'a.exec()' starts the Qt application event loop.
     return a.exec(); // The return value is used to exit the program cleanly
+
+    // std::cout << "hello world\n";
+    // return 0;
 }

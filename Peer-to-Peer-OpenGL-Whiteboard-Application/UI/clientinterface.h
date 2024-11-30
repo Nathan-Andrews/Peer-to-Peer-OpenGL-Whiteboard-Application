@@ -1,7 +1,7 @@
 #ifndef CLIENTINTERFACE_H
 #define CLIENTINTERFACE_H
 
-#include <QMainWindow>
+#include "Source.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
