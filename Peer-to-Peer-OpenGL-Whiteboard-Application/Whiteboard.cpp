@@ -1,4 +1,8 @@
+#ifndef WHITEBOARD
+#define WHITEBOARD
+
 #include "Whiteboard.h"
+#include "ConnectionManager.h"
 #include <iostream>
 #include <cmath>
 
@@ -29,6 +33,13 @@ void Whiteboard::mouseButtonCallback(GLFWwindow* window, int button, int action,
                 if (activeWhiteboard->vertices.size() >= 2) {
                     DrawAction newAction(activeWhiteboard->myId, activeWhiteboard->vertices, activeWhiteboard->brushSize, activeWhiteboard->currentColor);
                     activeWhiteboard->drawActions.push_back(newAction);
+
+                    ConnectionManager* manager = getConnectionManager();
+                    if (manager != nullptr){
+                        
+                        //std::cout << "write draw action" << std::endl;
+                        manager->Write(newAction.serialize());
+                    }
                 }
 
                 activeWhiteboard->vertices.clear();
@@ -97,7 +108,9 @@ void Whiteboard::draw() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    for (const auto& action : drawActions) {
+    //std::cout << "drawing!" << std::endl;
+    //ConnectionManager* manager = getConnectionManager();
+    for (auto& action : drawActions) {
         action.draw();
     }
 
@@ -188,3 +201,5 @@ bool Whiteboard::addDrawAction(DrawAction dAction) {
     drawActions.push_back(dAction);
     return true;
 }
+
+#endif

@@ -25,27 +25,42 @@ else
     LIBDIRS = -LC:/boost/lib -LC:/glfw/lib -LC:/glew/lib
 endif
 
-
+# Directories
 SRCDIR = Peer-to-Peer-OpenGL-Whiteboard-Application
 BUILDDIR = build
 TARGET = app
 
-# Source files
+# Source files and dependencies
 SRCS = $(wildcard $(SRCDIR)/*.cpp)
 OBJS = $(patsubst $(SRCDIR)/%.cpp, $(BUILDDIR)/%.o, $(SRCS))
+DEPS = $(OBJS:.o=.d)
 
 # Build rules
-.PHONY: all clean
+.PHONY: all clean distclean
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(LIBDIRS) -o $@ $^ $(LIBS) $(BOOST_LIBS)
 
-# Compile .cpp files into .o files
+# Generate dependencies while compiling
 $(BUILDDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(BUILDDIR)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
 
+# Include dependency files
+-include $(DEPS)
+
+# Clean built files
 clean:
-	rm -rf $(BUILDDIR) $(TARGET)
+	$(RM) $(BUILDDIR)/*.o $(BUILDDIR)/*.d $(TARGET)
+
+# Clean everything including build directory
+distclean: clean
+	$(RM) -r $(BUILDDIR)
+
+# Print variables for debugging
+debug:
+	@echo "Sources: $(SRCS)"
+	@echo "Objects: $(OBJS)"
+	@echo "Dependencies: $(DEPS)"
