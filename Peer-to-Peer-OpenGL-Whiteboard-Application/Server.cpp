@@ -25,17 +25,17 @@ bool ClientSession::WaitForMessage() {
 // Constructor for initializing the server to listen on an arbitrary port.
 // Accepts client connections in a loop, spawning a new thread for each client.
 // Made to be used with an arbitrary port.  Only use a specific port during testing
-Server::Server(PORT _port) {
+Server::Server(PORT _port) : acceptor(io_context, tcp::endpoint(tcp::v4(), _port)) {
     std::cout << "starting..." << std::endl;
-    // Create a TCP acceptor to listen on an arbitrary port.
-    tcp::acceptor acceptor(io_context, tcp::endpoint(tcp::v4(), _port));
     
     // Retrieve the automatically assigned port number
     host.port = acceptor.local_endpoint().port();
     // get the LAN IP
     host.ip = Server::FindIP();
     std::cout << "Server listening on " << host.ip << ":" << host.port << std::endl;
+}
 
+void Server::Listen() {
     // Infinite loop to accept incoming client connections.
     while (true) {
         tcp::socket socket(io_context); // Create a socket for the incoming connection.

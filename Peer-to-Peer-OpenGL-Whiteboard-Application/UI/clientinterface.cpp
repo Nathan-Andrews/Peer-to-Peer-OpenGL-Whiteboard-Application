@@ -1,5 +1,6 @@
 #include "Source.h"
 
+
 ClientInterface::ClientInterface(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::ClientInterface)
@@ -20,16 +21,73 @@ std :: string sessioncode;
 void ClientInterface::on_btnjoin_clicked()
 {
     // Get the text from the QLineEdit and convert it to std::string
-    sessioncode = ui->txtsessioncode->text().toStdString();
+    // sessioncode = ui->txtsessioncode->text().toStdString();
+
+    SessionCode sessionCode;
+    try {
+        sessionCode = SessionCode(ui->txtsessioncode->text().toStdString());
+    }
+    catch (...) {
+        ui->txtresultcode->setText(QString::fromStdString("invalid code"));
+        return;
+    }
+
+    std::cout << "decoded: " << sessionCode.host.ip << ":" << sessionCode.host.port << std::endl;
+
+    {
+        std::lock_guard<std::mutex> lock(form_mtx);
+        formData->type = JOIN_SERVER;
+        formData->host = sessionCode.host;
+    }
+    ui->txtresultcode->setText(QString::fromStdString("connecting..."));
+
+    wait_form.notify_all(); // Notify all waiting threads
+
+    {
+        std::unique_lock<std::mutex> lock(form_mtx);
+        wait_form.wait(lock, [] { return formData->type == JOIN_SUCCESS || formData->type == JOIN_FAIL; });
+
+        if (formData->type == JOIN_SUCCESS) {
+            formData->type = NONE;
+
+            ui->txtresultcode->setText(QString::fromStdString("join success"));
+
+            this->close();
+        }
+        else if (formData->type == JOIN_FAIL) {
+            formData->type = NONE;
+
+            ui->txtresultcode->setText(QString::fromStdString("invalid code"));
+        }
+    }
+}
+void ClientInterface::on_btncreatesession_clicked()
+{
+    {
+        std::lock_guard<std::mutex> lock(form_mtx);
+        formData->type = HOST_SERVER;
+    }
+    wait_form.notify_all(); // Notify all waiting threads
+
+    SessionCode sessionCode;
+
+    {
+        std::unique_lock<std::mutex> lock(form_mtx);
+        wait_form.wait(lock, [] { return formData->type == SESSION_LINK; });
+
+        sessionCode = SessionCode(formData->host);
+
+        std::cout << "session code: " << sessionCode.generateCode() << std::endl;
+    }
+
+    sessioncode = sessionCode.generateCode();
+
 
     // Convert std::string to QString for displaying in QLabel
     QString sessionCodeQString = QString::fromStdString(sessioncode);
 
-    // Set the text of the QLabel to show the session code
     ui->txtresultcode->setText("Session Code: " + sessionCodeQString);
-
 }
-
 
 void ClientInterface::on_modeChanged(int index)
 {
@@ -55,7 +113,6 @@ void ClientInterface::on_modeChanged(int index)
         ui->lblserver->setText("");          // Optionally clear label
 
     }
-
-
 }
+
 

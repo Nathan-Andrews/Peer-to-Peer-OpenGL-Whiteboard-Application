@@ -9,12 +9,13 @@ using namespace std;
 
 class SessionCode {
 public:
-	SessionCode(string ip, int port);
+	SessionCode(Host host);
+	SessionCode(IP ip, PORT port);
+	SessionCode(std::string encryptedCode);
 	SessionCode();
 	string generateCode();    //For the server
 	string decodeSession(string encryptedCode);   //For the client
 
-	string ip;
-	int port;
+	Host host;
 	string code;
 };
