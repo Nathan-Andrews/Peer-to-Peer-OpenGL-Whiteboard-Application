@@ -31,6 +31,7 @@ void Whiteboard::mouseButtonCallback(GLFWwindow* window, int button, int action,
                 if (activeWhiteboard->vertices.size() >= 2) {
                     DrawAction newAction(activeWhiteboard->myId, activeWhiteboard->vertices, activeWhiteboard->brushSize, activeWhiteboard->currentColor);
                     activeWhiteboard->drawActions.push_back(newAction);
+                    activeWhiteboard->prevActions.push_back(newAction);
 
                     if (manager != nullptr){
                         
@@ -180,6 +181,7 @@ bool Whiteboard::addDrawAction(std::string user, float brushSize, float r, float
     float color[4] = { r, g, b, a };
 
     DrawAction newAction(user, vertices, brushSize, color);
+    prevActions.push_back(newAction);
     drawActions.push_back(newAction);
 
     return true;
@@ -195,12 +197,17 @@ bool Whiteboard::addDrawAction(DrawAction dAction) {
         return false;
     }
 
+    prevActions.push_back(dAction);
     drawActions.push_back(dAction);
     return true;
 }
 
 void Whiteboard::setConnectionManager(ConnectionManager* m) {
     manager = m;
+}
+
+Whiteboard* getActiveWhiteboard(){
+    return activeWhiteboard;
 }
 
 #endif

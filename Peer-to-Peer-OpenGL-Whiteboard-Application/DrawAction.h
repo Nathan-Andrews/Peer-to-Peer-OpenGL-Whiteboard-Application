@@ -21,12 +21,17 @@ public:
     std::string serialize() const {
         std::string serialized;
         
-        size_t idLength = id.length();
-        serialized.append(reinterpret_cast<const char*>(&idLength), sizeof(size_t));
+        uint32_t idLength = static_cast<uint32_t>(id.length());
+        uint32_t vertSize = static_cast<uint32_t>(vertices.size());
+        
+        serialized.reserve(sizeof(uint32_t) + id.length() + 
+                        sizeof(uint32_t) + vertices.size() * sizeof(float) + 
+                        sizeof(float) + 4 * sizeof(float));
+        
+        serialized.append(reinterpret_cast<const char*>(&idLength), sizeof(uint32_t));
         serialized.append(id);
-
-        size_t vertSize = vertices.size();
-        serialized.append(reinterpret_cast<const char*>(&vertSize), sizeof(size_t));
+        
+        serialized.append(reinterpret_cast<const char*>(&vertSize), sizeof(uint32_t));
         serialized.append(reinterpret_cast<const char*>(vertices.data()), vertices.size() * sizeof(float));
         serialized.append(reinterpret_cast<const char*>(&brushSize), sizeof(float));
         serialized.append(reinterpret_cast<const char*>(color), 4 * sizeof(float));
@@ -38,13 +43,13 @@ public:
         DrawAction action;
         size_t offset = 0;
 
-        if (data.size() < sizeof(size_t)) {
+        if (data.size() < sizeof(uint32_t)) {
             throw std::runtime_error("Data too small for id length");
         }
 
-        size_t idLength;
-        std::memcpy(&idLength, data.data() + offset, sizeof(size_t));
-        offset += sizeof(size_t);
+        uint32_t idLength;
+        std::memcpy(&idLength, data.data() + offset, sizeof(uint32_t));
+        offset += sizeof(uint32_t);
 
         if (data.size() < offset + idLength) {
             throw std::runtime_error("Data too small for id string");
@@ -52,12 +57,12 @@ public:
         action.id = data.substr(offset, idLength);
         offset += idLength;
 
-        if (data.size() < offset + sizeof(size_t)) {
+        if (data.size() < offset + sizeof(uint32_t)) {
             throw std::runtime_error("Data too small for vertices size");
         }
-        size_t vertSize;
-        std::memcpy(&vertSize, data.data() + offset, sizeof(size_t));
-        offset += sizeof(size_t);
+        uint32_t vertSize;
+        std::memcpy(&vertSize, data.data() + offset, sizeof(uint32_t));
+        offset += sizeof(uint32_t);
 
         if (data.size() < offset + (vertSize * sizeof(float))) {
             throw std::runtime_error("Data too small for vertices");

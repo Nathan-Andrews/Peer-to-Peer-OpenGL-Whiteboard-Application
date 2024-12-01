@@ -18,6 +18,21 @@ void ConnectionManager::AddConnection(Connection* connection) {
 
     std::cout << "added connection" << std::endl;
 
+    Whiteboard* activeWhiteboard = getActiveWhiteboard();
+    if (activeWhiteboard && activeWhiteboard->prevActions.size()){
+        cout << "Active whiteboard size: " << activeWhiteboard->prevActions.size() << std::endl;
+        for (DrawAction& action : activeWhiteboard->prevActions){
+            const std::string serialized = action.serialize();
+
+            if (serialized.size()){
+                connection->Write(serialized);
+                std::this_thread::sleep_for(std::chrono::milliseconds(100)); // work around so reader knows when message starts/stops
+            }else{
+                std::cout << "empty serialized value... " << std::endl;
+            }
+        }
+    }
+
     // Create a new thread to manage communication with this connection.
     std::thread(&ConnectionManager::ConnectionThreadFunction, this, connection).detach();
 }

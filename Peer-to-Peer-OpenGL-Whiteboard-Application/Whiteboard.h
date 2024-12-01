@@ -26,6 +26,7 @@ private:
     void draw();
 
 public:
+    std::vector<DrawAction> prevActions;
     Whiteboard(std::string user);
     ~Whiteboard();
 
@@ -38,5 +39,7 @@ public:
     bool addDrawAction(DrawAction dAction);
     void setConnectionManager(ConnectionManager* manager);
 };
+
+Whiteboard* getActiveWhiteboard();
 
 #endif
