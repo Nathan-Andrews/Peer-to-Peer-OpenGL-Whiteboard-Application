@@ -49,17 +49,28 @@ void ClientInterface::on_btncreatesession_clicked()
 {
     {
         std::lock_guard<std::mutex> lock(mtx);
-
-        sessioncode = "123.123.123";
-
-        // Convert std::string to QString for displaying in QLabel
-        QString sessionCodeQString = QString::fromStdString(sessioncode);
-
-        ui->txtresultcode->setText("Session Code: " + sessionCodeQString);
-
         formData->type = HOST_SERVER;
     }
     cv.notify_all(); // Notify all waiting threads
+
+    SessionCode sessionCode;
+
+    {
+        std::unique_lock<std::mutex> lock(mtx);
+        cv.wait(lock, [this] { return formData->type == SESSION_LINK; });
+
+        sessionCode = SessionCode(formData->host);
+
+        std::cout << "session code: " << sessionCode.generateCode() << std::endl;
+    }
+
+    sessioncode = sessionCode.generateCode();
+
+
+    // Convert std::string to QString for displaying in QLabel
+    QString sessionCodeQString = QString::fromStdString(sessioncode);
+
+    ui->txtresultcode->setText("Session Code: " + sessionCodeQString);
 }
 
 void ClientInterface::on_modeChanged(int index)

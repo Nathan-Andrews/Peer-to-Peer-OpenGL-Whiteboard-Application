@@ -38,7 +38,7 @@ DrawActionQueue actionQueue;
 
 std::mutex mtx;
 std::condition_variable wait_form;
-std::condition_variable wait_label;
+// std::condition_variable wait_label;
 FormData* formData = new FormData();
 
 void serverThreadFunction() {
@@ -52,6 +52,9 @@ void serverThreadFunction() {
         std::unique_lock<std::mutex> lock(mtx);
 
         formData->host = server.GetHost();
+        formData->type = SESSION_LINK;
+
+        wait_form.notify_all();
     }
 
     server.Listen();
@@ -66,7 +69,6 @@ void dataThreadFunction() {
 
         if (formData->type == HOST_SERVER) {
             std::thread(serverThreadFunction).detach();
-            sleep(1);
         }
     }
 }

@@ -6,6 +6,7 @@
 enum FormDataType {
     HOST_SERVER,
     JOIN_SERVER,
+    SESSION_LINK,
     NONE
 };
 
