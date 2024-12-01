@@ -31,7 +31,7 @@
 
 ### Macos Setup
 1. Clone the repository
-2. Install Boost *Note: this is likely already installed*
+2. Install Boost
 
    a. install with brew `brew install boost`
 3. Install GLFW
@@ -43,7 +43,9 @@
 5. Install GLM
 
    a. install with brew `brew install glm`
+5. Install Qt
 
+   a. install with brew `brew install qt`
 
 ## Running
 ### Running with visual studio
