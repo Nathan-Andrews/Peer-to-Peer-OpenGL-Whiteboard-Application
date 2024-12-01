@@ -1,8 +1,25 @@
 #include "Source.h"
 
+ClientInterface::ClientInterface(std::mutex& mtx, std::condition_variable& cv, FormData* formData ,QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::ClientInterface)
+    , mtx(mtx)
+    , cv(cv)
+    , formData(formData)
+{
+    ui->setupUi(this);
+
+    // Connect the ComboBox's currentIndexChanged signal to the on_modeChanged slot
+    connect(ui->boxswitch, SIGNAL(currentIndexChanged(int)), this, SLOT(on_modeChanged(int)));
+    connect(ui->btnjoinsession, SIGNAL(clicked()), this, SLOT(on_btnjoin_clicked()));
+}
+
 ClientInterface::ClientInterface(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::ClientInterface)
+    , mtx(mtx)
+    , cv(cv)
+    , formData(nullptr)
 {
     ui->setupUi(this);
 
@@ -30,12 +47,19 @@ void ClientInterface::on_btnjoin_clicked()
 }
 void ClientInterface::on_btncreatesession_clicked()
 {
-    sessioncode = "123.123.123";
+    {
+        std::lock_guard<std::mutex> lock(mtx);
 
-    // Convert std::string to QString for displaying in QLabel
-    QString sessionCodeQString = QString::fromStdString(sessioncode);
+        sessioncode = "123.123.123";
 
-    ui->txtresultcode->setText("Session Code: " + sessionCodeQString);
+        // Convert std::string to QString for displaying in QLabel
+        QString sessionCodeQString = QString::fromStdString(sessioncode);
+
+        ui->txtresultcode->setText("Session Code: " + sessionCodeQString);
+
+        formData->type = HOST_SERVER;
+    }
+    cv.notify_all(); // Notify all waiting threads
 }
 
 void ClientInterface::on_modeChanged(int index)

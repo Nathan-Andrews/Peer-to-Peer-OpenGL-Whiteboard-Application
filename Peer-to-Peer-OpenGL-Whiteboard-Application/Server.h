@@ -53,6 +53,7 @@ class ClientSession {
 // The Server class manages multiple client connections and facilitates communication between them.
 class Server {
     boost::asio::io_context io_context; // I/O context for managing asynchronous operations.
+    tcp::acceptor acceptor; // acceptor to accept new connections
     std::vector<ClientSession*> clients; // A list of active client sessions.
 
     std::mutex clients_mutex; // Mutex to ensure thread-safe access to the clients list.
@@ -64,9 +65,13 @@ public:
     // Made to be used with an arbitrary port.  Only use a specific port during testing
     Server(PORT _port = 0);
 
+    // listen and accept new connections
+    void Listen();
+
     // 
     PORT GetPort() {return host.port;}
     IP GetIP() {return host.ip;}
+    Host GetHost() { return host; }
 
     // finds a LAN address of the computer
     static IP FindIP() {
