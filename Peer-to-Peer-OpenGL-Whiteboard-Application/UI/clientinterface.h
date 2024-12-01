@@ -22,6 +22,8 @@ private slots:
 
     void on_modeChanged(int index);
 
+    void on_btncreatesession_clicked();
+
 private:
     Ui::ClientInterface *ui;
 };

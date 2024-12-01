@@ -27,9 +27,16 @@ void ClientInterface::on_btnjoin_clicked()
 
     // Set the text of the QLabel to show the session code
     ui->txtresultcode->setText("Session Code: " + sessionCodeQString);
-
 }
+void ClientInterface::on_btncreatesession_clicked()
+{
+    sessioncode = "123.123.123";
 
+    // Convert std::string to QString for displaying in QLabel
+    QString sessionCodeQString = QString::fromStdString(sessioncode);
+
+    ui->txtresultcode->setText("Session Code: " + sessionCodeQString);
+}
 
 void ClientInterface::on_modeChanged(int index)
 {
@@ -55,7 +62,6 @@ void ClientInterface::on_modeChanged(int index)
         ui->lblserver->setText("");          // Optionally clear label
 
     }
-
-
 }
+
 
