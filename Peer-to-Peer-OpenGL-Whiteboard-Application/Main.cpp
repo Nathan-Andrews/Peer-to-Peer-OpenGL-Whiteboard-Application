@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
     
     if (command == "host") {
         std::thread(serverThreadFunction).detach();
-        sleep(1);
+        while (1) sleep(1);
     }
 
     ConnectionManager* manager = new ConnectionManager(LOCALHOST,11111);
