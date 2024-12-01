@@ -16,6 +16,9 @@
 #include <mutex>
 #include <condition_variable>
 #include <optional>
+#include <atomic>
+#include <cmath>
+#include <fstream>
 
 // library includes
 #include <boost/asio.hpp>
@@ -36,4 +39,6 @@ typedef std::string IP;
 #include "Connection.h"
 #include "Server.h"
 #include "ConnectionManager.h"
+#include "DrawAction.h"
 #include "Whiteboard.h"
+#include "SessionCode.h"

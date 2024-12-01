@@ -1,10 +1,7 @@
 #ifndef WHITEBOARD
 #define WHITEBOARD
 
-#include "Whiteboard.h"
-#include "ConnectionManager.h"
-#include <iostream>
-#include <cmath>
+#include "Source.h"
 
 // Static members for handling callbacks
 Whiteboard* activeWhiteboard = nullptr;

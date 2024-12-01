@@ -2,16 +2,7 @@
 #ifndef WHITEBOARD_H
 #define WHITEBOARD_H
 
-#define GLEW_STATIC
-
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
-#include <vector>
-#include <string>
-
-#include "DrawAction.h"
-#include "ConnectionManager.h"
+#include "Source.h"
 
 class Whiteboard {
 private:

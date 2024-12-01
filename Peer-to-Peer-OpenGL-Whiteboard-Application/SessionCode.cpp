@@ -1,8 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-
-#include "SessionCode.h"
+#include "Source.h"
 
 using namespace std;
 
