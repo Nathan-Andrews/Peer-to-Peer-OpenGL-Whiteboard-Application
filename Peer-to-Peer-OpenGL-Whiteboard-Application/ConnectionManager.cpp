@@ -1,52 +1,30 @@
 #include "Source.h"
 
+// Constructor: Initializes the ConnectionManager by connecting to the host server and setting up threads.
+ConnectionManager::ConnectionManager(IP ip, PORT port) 
+    : hostConnection(ip, port) {
+    // Start a thread for communication with the host server.
+    std::thread(&ConnectionManager::ServerCommunicationThreadFunction, this).detach();
 
-// Modified constructor - doesn't automatically connect
-ConnectionManager::ConnectionManager(IP ip) : ip{ip} {}
+    // TODO: Request the current state of the board.
 
-bool ConnectionManager::ConnectToPeer(PORT port) {
-    try {
-        Connection* connection = new Connection(ip, port, true);
-        // Start a read thread but DON'T add to connections list
-        std::thread(&ConnectionManager::ConnectionThreadFunction, this, connection).detach();
-        return true;
-    } catch (const std::exception& e) {
-        std::cerr << "Failed to connect to peer on port " << port << ": " << e.what() << std::endl;
-        return false;
-    }
+    // Start a thread to accept new connections from other peers.
+    std::thread(&ConnectionManager::AcceptNewConnectionsThreadFunction, this).detach();
 }
 
-bool ConnectionManager::StartListening(PORT port) {
-    try {
-        openConnection = new Connection(ip, port, false);
-        std::cout << "Listening on port " << port << std::endl;
-        // After accepting connection, add it to broadcast list
-        connections.Add(openConnection);  // This one SHOULD be in the list for broadcasting
-        return true;
-    } catch (const std::exception& e) {
-        std::cerr << "Failed to start listening on port " << port << ": " << e.what() << std::endl;
-        delete openConnection;
-        openConnection = nullptr;
-        return false;
-    }
-}
-
+// Adds a new connection to the connection list and spawns a thread to handle its messages.
 void ConnectionManager::AddConnection(Connection* connection) {
-    //std::cout << "Before adding - connections size: " << connections.Size() << std::endl;
     connections.Add(connection);
-    //std::cout << "After adding - connections size: " << connections.Size() << std::endl;
 
-    //std::cout << "Creating thread for connection on port " << connection->GetPort() << std::endl;
-    std::thread([this, connection]() {
-        ConnectionThreadFunction(connection);
-    }).detach();
+    std::cout << "added connection" << std::endl;
+
+    // Create a new thread to manage communication with this connection.
+    std::thread(&ConnectionManager::ConnectionThreadFunction, this, connection).detach();
 }
-
 
 // Handles a single connection, reading messages and adding them to the message buffer.
 // If the connection closes, removes it from the list and cleans up resources.
 void ConnectionManager::ConnectionThreadFunction(Connection* connection) {
-    connection->io_context.run();
     while (true) {
         // Read a message from the connection.
         std::string message = connection->Read();
@@ -117,46 +95,19 @@ std::string ConnectionManager::Read() {
 
 // Broadcasts a message to all connected peers.
 void ConnectionManager::Write(std::string message) {
-    //std::cout << "Broadcasting message of size: " << message.size() << std::endl;
-    //std::cout << "Current connections: " << connections.Size() << std::endl;
-
-    size_t sent = 0;
-    connections.Iterate([&sent, message](Connection* connection) {
-        try {
-            //std::cout << "Attempting to send to connection " << connection->GetPort() << std::endl;
-            connection->Write(message);
-            sent++;
-            //std::cout << "Successfully sent to connection " << connection->GetPort() << std::endl;
-        } catch (const std::exception& e) {
-            std::cerr << "Failed to send to connection " << connection->GetPort() 
-                     << ": " << e.what() << std::endl;
-        }
+    // Iterate through all connections and send the message.
+    connections.Iterate([message](Connection* connection) {
+        connection->Write(message);
     });
-   //std::cout << "Sent to " << sent << " connections" << std::endl;
 }
 
 // Receives the next message from any peer and stores it in a character buffer.
 void ConnectionManager::Read(char* buf) {
     std::string data = Read();
-    //std::cout << "read " << data << std::endl;
-
     std::strcpy(buf, data.c_str());
 }
 
 // Broadcasts a message from a character buffer to all connected peers.
 void ConnectionManager::Write(char* buf) {
     Write(std::string(buf));
-}
-
-ConnectionManager* manager = nullptr;
-
-void createConnectionManager(IP ip){
-    if (manager == nullptr){
-        manager = new ConnectionManager(ip);
-       // manager->AcceptNewConnectionsThreadFunction();
-    }
-}
-
-ConnectionManager* getConnectionManager(){
-    return manager;
 }

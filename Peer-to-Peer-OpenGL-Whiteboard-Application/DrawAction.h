@@ -3,10 +3,7 @@
 
 #define GLEW_STATIC
 
-#include <string>
-#include <vector>
-
-#include <GL/glew.h>
+#include "Source.h"
 
 struct DrawAction {
 public:

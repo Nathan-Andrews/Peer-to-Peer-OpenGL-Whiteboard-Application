@@ -1,13 +1,11 @@
 #ifndef WHITEBOARD
 #define WHITEBOARD
 
-#include "Whiteboard.h"
-#include "ConnectionManager.h"
-#include <iostream>
-#include <cmath>
+#include "Source.h"
 
 // Static members for handling callbacks
 Whiteboard* activeWhiteboard = nullptr;
+ConnectionManager* manager = nullptr;
 
 void Whiteboard::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
     if (activeWhiteboard) {
@@ -34,7 +32,6 @@ void Whiteboard::mouseButtonCallback(GLFWwindow* window, int button, int action,
                     DrawAction newAction(activeWhiteboard->myId, activeWhiteboard->vertices, activeWhiteboard->brushSize, activeWhiteboard->currentColor);
                     activeWhiteboard->drawActions.push_back(newAction);
 
-                    ConnectionManager* manager = getConnectionManager();
                     if (manager != nullptr){
                         
                         //std::cout << "write draw action" << std::endl;
@@ -200,6 +197,10 @@ bool Whiteboard::addDrawAction(DrawAction dAction) {
 
     drawActions.push_back(dAction);
     return true;
+}
+
+void Whiteboard::setConnectionManager(ConnectionManager* m) {
+    manager = m;
 }
 
 #endif

@@ -26,6 +26,7 @@ bool ClientSession::WaitForMessage() {
 // Accepts client connections in a loop, spawning a new thread for each client.
 // Made to be used with an arbitrary port.  Only use a specific port during testing
 Server::Server(PORT _port) {
+    std::cout << "starting..." << std::endl;
     // Create a TCP acceptor to listen on an arbitrary port.
     tcp::acceptor acceptor(io_context, tcp::endpoint(tcp::v4(), _port));
     
