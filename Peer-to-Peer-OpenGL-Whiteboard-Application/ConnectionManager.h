@@ -1,3 +1,6 @@
+#ifndef CONNECTION_MANAGER_H
+#define CONNECTION_MANAGER_H
+
 #include "Source.h"
 
 // The ConnectionManager class manages connections to both a central server and peers.
@@ -48,3 +51,5 @@ class ConnectionManager {
         // Listens for and accepts incoming peer connections.
         void AcceptNewConnectionsThreadFunction();
 };
+
+#endif
