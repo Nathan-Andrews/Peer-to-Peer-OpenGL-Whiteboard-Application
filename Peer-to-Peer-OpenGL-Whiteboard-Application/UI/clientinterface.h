@@ -2,6 +2,7 @@
 #define CLIENTINTERFACE_H
 
 #include "Source.h"
+#include "Globals.h"
 
 enum FormDataType {
     HOST_SERVER, // indicates that the user pressed the "create session" button
@@ -29,7 +30,6 @@ class ClientInterface : public QMainWindow
 
 public:
     ClientInterface(QWidget *parent = nullptr);
-    ClientInterface(std::mutex& mtx, std::condition_variable& cv, FormData* formData, QWidget *parent = nullptr);
     ~ClientInterface();
 
 private slots:
@@ -41,9 +41,5 @@ private slots:
 
 private:
     Ui::ClientInterface *ui;
-
-    std::mutex& mtx;
-    std::condition_variable& cv;
-    FormData* formData;
 };
 #endif // CLIENTINTERFACE_H

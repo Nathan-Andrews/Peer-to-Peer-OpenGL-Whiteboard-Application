@@ -32,6 +32,7 @@
 // type definitions
 typedef u_short PORT;
 typedef std::string IP;
+struct FormData;
 
 // macro constants
 #define LOCALHOST "127.0.0.1"

@@ -1,4 +1,5 @@
 #include "Source.h"
+#include "Globals.h"
 
 class DrawActionQueue {
 private:
@@ -36,11 +37,6 @@ public:
 
 DrawActionQueue actionQueue;
 
-std::mutex mtx;
-std::condition_variable wait_form;
-// std::condition_variable wait_label;
-FormData* formData = new FormData();
-
 void serverThreadFunction() {
    Server server(11111);
 //    std::cout << "server running on "
@@ -49,7 +45,7 @@ void serverThreadFunction() {
 //       << server.GetPort()
 //       << std::endl;
     {
-        std::unique_lock<std::mutex> lock(mtx);
+        std::unique_lock<std::mutex> lock(form_mtx);
 
         formData->host = server.GetHost();
         formData->type = SESSION_LINK;
@@ -61,15 +57,39 @@ void serverThreadFunction() {
 }
 
 void dataThreadFunction() {
-    std::cout << "waiting...\n";
-    {
-        std::unique_lock<std::mutex> lock(mtx);
-        wait_form.wait(lock, [] { return formData->type != NONE; });
-        std::cout << "done waiting\n";
+    for (int cont = true; cont;) {
+        std::cout << "waiting...\n";
+        {
+            std::unique_lock<std::mutex> lock(form_mtx);
+            wait_form.wait(lock, [] { return formData->type == HOST_SERVER || formData->type == JOIN_SERVER; });
+            std::cout << "done waiting\n";
 
-        if (formData->type == HOST_SERVER) {
-            std::thread(serverThreadFunction).detach();
+            if (formData->type == HOST_SERVER) {
+                std::thread(serverThreadFunction).detach();
+                break;
+            }
+            else if (formData->type == JOIN_SERVER) {
+                manager = new ConnectionManager(LOCALHOST,11111);
+
+                sleep(1);
+
+                // connection successful
+                if (manager->isConnected) {
+                    formData->type = JOIN_SUCCESS;
+
+                    cont = false;
+                }
+                // connection unsuccessful
+                else {
+                    delete manager;
+                    manager = nullptr;
+                    
+                    formData->type = JOIN_FAIL;
+                }
+            }
         }
+
+        wait_form.notify_all();
     }
 }
 
@@ -80,7 +100,7 @@ int main(int argc, char* argv[]) {
     QApplication a(argc, argv);
     
     // Create an instance of the ClientInterface class (the main window).
-    ClientInterface w(mtx,wait_form,formData,nullptr);
+    ClientInterface w(nullptr);
 
     // Display the main window by calling the 'show()' method.
     w.show();
@@ -88,9 +108,9 @@ int main(int argc, char* argv[]) {
     // The call to 'a.exec()' starts the Qt application event loop.
     a.exec();
 
-    if (formData->type != JOIN_SERVER) return 0;
+    if (manager == nullptr) return 0;
 
-    ConnectionManager* manager = new ConnectionManager(LOCALHOST,11111);
+    // manager = new ConnectionManager(LOCALHOST,11111);
 
     //these probably all coulda gone into whiteboard but nahhh
     if (!glfwInit()) exit(-1);
@@ -103,9 +123,8 @@ int main(int argc, char* argv[]) {
     //(maybe we need an actual id system)
     Whiteboard whiteboard("me!");
     whiteboard.setWindow(window);
-    whiteboard.setConnectionManager(manager);
     
-    std::thread networkThread([window, manager]() {
+    std::thread networkThread([window]() {
         while (!glfwWindowShouldClose(window) && !actionQueue.isTerminated()) {
             try {
                 // Get the raw message as a string first

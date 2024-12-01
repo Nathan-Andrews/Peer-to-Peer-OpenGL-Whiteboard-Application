@@ -2,10 +2,10 @@
 #define WHITEBOARD
 
 #include "Source.h"
+#include "Globals.h"
 
 // Static members for handling callbacks
 Whiteboard* activeWhiteboard = nullptr;
-ConnectionManager* manager = nullptr;
 
 void Whiteboard::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
     if (activeWhiteboard) {
@@ -106,7 +106,6 @@ void Whiteboard::draw() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     //std::cout << "drawing!" << std::endl;
-    //ConnectionManager* manager = getConnectionManager();
     for (auto& action : drawActions) {
         action.draw();
     }
@@ -197,10 +196,6 @@ bool Whiteboard::addDrawAction(DrawAction dAction) {
 
     drawActions.push_back(dAction);
     return true;
-}
-
-void Whiteboard::setConnectionManager(ConnectionManager* m) {
-    manager = m;
 }
 
 #endif

@@ -36,7 +36,6 @@ public:
     void setBrushColor(float r, float g, float b, float a);
     bool addDrawAction(std::string user, float brushSize, float r, float g, float b, float a, std::vector<float> vertices);
     bool addDrawAction(DrawAction dAction);
-    void setConnectionManager(ConnectionManager* manager);
 };
 
 #endif
