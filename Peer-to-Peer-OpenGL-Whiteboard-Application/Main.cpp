@@ -52,7 +52,7 @@ void serverThreadFunction() {
     server.Listen();
 }
 
-void dataThreadFunction() {
+void formThreadFunction() {
     for (int cont = true; cont;) {
         std::cout << "waiting...\n";
         {
@@ -91,7 +91,7 @@ void dataThreadFunction() {
 
 
 int main(int argc, char* argv[]) {
-    std::thread(dataThreadFunction).detach();
+    std::thread(formThreadFunction).detach();
 
     QApplication a(argc, argv);
     
