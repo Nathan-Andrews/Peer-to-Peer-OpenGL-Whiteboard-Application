@@ -38,12 +38,8 @@ public:
 DrawActionQueue actionQueue;
 
 void serverThreadFunction() {
-   Server server(11111);
-//    std::cout << "server running on "
-//       << server.GetIP()
-//       << ":"
-//       << server.GetPort()
-//       << std::endl;
+   Server server;
+
     {
         std::unique_lock<std::mutex> lock(form_mtx);
 
@@ -69,9 +65,9 @@ void dataThreadFunction() {
                 break;
             }
             else if (formData->type == JOIN_SERVER) {
-                manager = new ConnectionManager(LOCALHOST,11111);
+                manager = new ConnectionManager(formData->host);
 
-                sleep(1);
+                sleep(1); // wait for connection
 
                 // connection successful
                 if (manager->isConnected) {
@@ -109,8 +105,6 @@ int main(int argc, char* argv[]) {
     a.exec();
 
     if (manager == nullptr) return 0;
-
-    // manager = new ConnectionManager(LOCALHOST,11111);
 
     //these probably all coulda gone into whiteboard but nahhh
     if (!glfwInit()) exit(-1);
