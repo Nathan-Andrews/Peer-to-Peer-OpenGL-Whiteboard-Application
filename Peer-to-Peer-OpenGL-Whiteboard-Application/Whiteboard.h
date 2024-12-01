@@ -26,6 +26,7 @@ private:
     void draw();
 
 public:
+    std::vector<DrawAction> prevActions;
     Whiteboard(std::string user);
     ~Whiteboard();
 
@@ -37,5 +38,7 @@ public:
     bool addDrawAction(std::string user, float brushSize, float r, float g, float b, float a, std::vector<float> vertices);
     bool addDrawAction(DrawAction dAction);
 };
+
+Whiteboard* getActiveWhiteboard();
 
 #endif
