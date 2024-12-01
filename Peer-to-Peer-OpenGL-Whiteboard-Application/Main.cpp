@@ -138,6 +138,11 @@ int main(int argc, char* argv[]) {
         }
     });
 
+    // closes the window when the server disconnects
+    std::thread windowCloseThread([window]() {
+        while (manager->isConnected) sleep(1);
+        glfwSetWindowShouldClose(window, GLFW_TRUE);
+    });
 
     // you can use the q button to close the window
     //use [, ] to change brush size
