@@ -24,6 +24,9 @@
 #include <boost/asio.hpp>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <QtCore/QString>
+#include <QtWidgets/QMainWindow>
+#include <QtWidgets/QApplication>
 
 
 // type definitions
@@ -42,3 +45,5 @@ typedef std::string IP;
 #include "DrawAction.h"
 #include "Whiteboard.h"
 #include "SessionCode.h"
+#include "ui_clientinterface.h"
+#include "clientinterface.h"
