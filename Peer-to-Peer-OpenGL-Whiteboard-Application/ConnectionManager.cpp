@@ -12,6 +12,8 @@ ConnectionManager::ConnectionManager(IP ip, PORT port)
     std::thread(&ConnectionManager::AcceptNewConnectionsThreadFunction, this).detach();
 }
 
+ConnectionManager::ConnectionManager(Host host) : ConnectionManager(host.ip, host.port) {}
+
 // Adds a new connection to the connection list and spawns a thread to handle its messages.
 void ConnectionManager::AddConnection(Connection* connection) {
     connections.Add(connection);

@@ -19,8 +19,11 @@ class ConnectionManager {
     ConcurrentContainer<std::string> messageBuffer;
 
     public:
-        // Constructor to initialize the ConnectionManager with a host and port.
+        // Constructor to initialize the ConnectionManager with a ip and port.
         ConnectionManager(IP, PORT);
+
+        // Constructor to initialize the ConnectionManager with a host and port.
+        ConnectionManager(Host);
 
         // Reads the next message from any connected peer.
         std::string Read();
