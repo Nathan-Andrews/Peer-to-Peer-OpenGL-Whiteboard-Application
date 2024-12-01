@@ -47,12 +47,18 @@ void serverThreadFunction() {
 
 
 int main(int argc, char* argv[]) {
-    // example of adding other user actions
-    // this should draw a line from the top right to the middleish
-    //bool check = whiteboard.addDrawAction("skibidi", 2.0f, 1.0f, 0.0f, 0.0f, 1.0f, { 0.0f,0.0f,100.0f,100.0f });
+    QApplication a(argc, argv);
+    
+    // Create an instance of the ClientInterface class (the main window).
+    ClientInterface w;
 
-    // whiteboard class already handles your own user actions
-    //if (argc != 2) return 1;
+    // Display the main window by calling the 'show()' method.
+    w.show();
+
+    // The call to 'a.exec()' starts the Qt application event loop.
+    // return a.exec(); // The return value is used to exit the program cleanly
+    a.exec();
+
 
     std::string command;
     std::cout << "Enter command (host or connect): ";
