@@ -62,7 +62,6 @@ int main(int argc, char* argv[]) {
         std::thread(serverThreadFunction).detach();
         sleep(1);
     }
-    // test
 
     ConnectionManager* manager = new ConnectionManager(LOCALHOST,11111);
 
