@@ -12,25 +12,22 @@ class Connection {
     friend class ClientSession;
     friend class ConnectionManager;
 
-public:
-    bool server;
-    static boost::asio::io_context io_context;
-    static std::thread io_thread;
-
+private:
+    boost::asio::io_context io_context; // The I/O context for managing asynchronous operations.
     tcp::socket socket;                // The socket used for communication.
     std::optional<tcp::acceptor> acceptor; // Optional acceptor for managing incoming connections (server mode).
 
     PORT port; // The ip and port associated with the connection or acceptor.
 
     // Constructor for initializing a client connection to a remote server.
-    Connection(IP ip, PORT port, bool connect);
+    Connection(IP ip, PORT port);
 
     // Constructor for initializing a client connection to a remote server using a Host
     Connection(Host host);
 
     // Constructor for initializing a server with a specific port.
     // Marked as deprecated because a constructor with an arbitrary port is preferred.
-    //[[deprecated("Use Connection() instead, which assigns an arbitrary port")]]
+    [[deprecated("Use Connection() instead, which assigns an arbitrary port")]]
     Connection(PORT port);
 
     // Default constructor for initializing a server with an arbitrary port.
@@ -50,10 +47,6 @@ public:
 
     // Waits for an incoming connection and assigns it to the socket.
     void AcceptConnection();
-
-    static void StartIOContext();
-
-    static void StopIOContext();
 
     // Returns the port associated with the connection or the acceptor.
     PORT GetPort();

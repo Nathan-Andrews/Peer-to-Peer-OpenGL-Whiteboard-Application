@@ -43,7 +43,35 @@ public:
 
 DrawActionQueue actionQueue;
 
+void serverThreadFunction() {
+   Server server(11111);
+   std::cout << "server running on "
+      << server.GetIP()
+      << ":"
+      << server.GetPort()
+      << std::endl;
+}
+
+
 int main(int argc, char* argv[]) {
+    // example of adding other user actions
+    // this should draw a line from the top right to the middleish
+    //bool check = whiteboard.addDrawAction("skibidi", 2.0f, 1.0f, 0.0f, 0.0f, 1.0f, { 0.0f,0.0f,100.0f,100.0f });
+
+    // whiteboard class already handles your own user actions
+    //if (argc != 2) return 1;
+
+    std::string command;
+    std::cout << "Enter command (host or connect): ";
+    std::cin >> command;
+    
+    if (command == "host") {
+        std::thread(serverThreadFunction).detach();
+        sleep(1);
+    }
+
+    ConnectionManager* manager = new ConnectionManager(LOCALHOST,11111);
+
     //these probably all coulda gone into whiteboard but nahhh
     if (!glfwInit()) return -1;
     GLFWwindow* window = glfwCreateWindow(1200, 800, "Whiteboard", NULL, NULL);
@@ -55,17 +83,7 @@ int main(int argc, char* argv[]) {
     //(maybe we need an actual id system)
     Whiteboard whiteboard("me!");
     whiteboard.setWindow(window);
-
-    // example of adding other user actions
-    // this should draw a line from the top right to the middleish
-    //bool check = whiteboard.addDrawAction("skibidi", 2.0f, 1.0f, 0.0f, 0.0f, 1.0f, { 0.0f,0.0f,100.0f,100.0f });
-
-    // whiteboard class already handles your own user actions
-    //if (argc != 2) return 1;
-
-    Connection::StartIOContext();
-    createConnectionManager("127.0.0.1");
-    ConnectionManager* manager = getConnectionManager();
+    whiteboard.setConnectionManager(manager);
     
     std::thread networkThread([window, manager]() {
         while (!glfwWindowShouldClose(window) && !actionQueue.isTerminated()) {
@@ -87,28 +105,6 @@ int main(int argc, char* argv[]) {
         }
     });
 
-    std::thread commandThread([manager, window](){
-        while (!glfwWindowShouldClose(window) && !actionQueue.isTerminated()){
-            std::string command;
-            std::cout << "Enter command (listen <port> or connect <port>): ";
-            std::cin >> command;
-            
-            if (command == "listen") {
-                PORT port;
-                std::cin >> port;
-                if (manager->StartListening(port)) {
-                    std::cout << "Now listening on port " << port << std::endl;
-                }
-            }
-            else if (command == "connect") {
-                PORT port;
-                std::cin >> port;
-                if (manager->ConnectToPeer(port)) {
-                    std::cout << "Connected to peer on port " << port << std::endl;
-                }
-            }
-        }
-    });
 
     // you can use the q button to close the window
     //use [, ] to change brush size

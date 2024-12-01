@@ -2,25 +2,18 @@
 
 // Reads data from the socket into a buffer and returns it as a string.
 std::string Connection::Read() {
-    if (server){
-        return "";
-    }
-
     try {
         // Create a buffer of maximum size with null characters
         std::string buffer(MAX_BUFFER_SIZE, '\0');
 
-       // std::cout << "start read" << std::endl;
         // Read data from the socket into the buffer
         std::size_t length = socket.read_some(boost::asio::buffer(buffer));
-      //  std::cout << "end read" << std::endl;
 
         // Resize the buffer to match the actual data length read
         buffer.resize(length);
 
         return buffer; // Return the data as a string
     } catch (const std::exception& e) {
-        std::cout << "read error " << e.what() << std::endl;
         // Handle any exceptions during the read operation (currently empty)
     }
 
@@ -29,71 +22,32 @@ std::string Connection::Read() {
 
 // Writes the provided message to the socket.
 void Connection::Write(std::string message) {
-    if (!socket.is_open()) {
-        throw std::runtime_error("Attempted to write to closed socket");
-    }
-    if (!server){
-        return;
-    }
-
     try {
-       // std::cout << "Writing data of size: " << message.size() << std::endl;
+        // Send the message over the socket
         boost::asio::write(socket, boost::asio::buffer(message));
-      //  std::cout << "Write completed" << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << "Write error: " << e.what() << std::endl;
-        throw;
+    } catch (...) {
+        // Handle any exceptions during the write operation (currently empty)
     }
 }
-
 
 // Constructor for establishing a connection to a remote server.
-Connection::Connection(IP ip, PORT port, bool connect) : socket(io_context), port(port) {
-    server = !connect;
-    if (connect) {
-        try {
-            tcp::resolver resolver(io_context);
-            auto endpoints = resolver.resolve(ip, std::to_string(port));
-            boost::asio::connect(socket, endpoints);
-            std::cout << "Connected to the server!" << std::endl;
-        } catch (const boost::system::system_error& e) {
-            throw std::runtime_error(std::string("Connection error: ") + e.what());
-        }
-    } else {
-        try {
-            boost::system::error_code ec;
-            boost::asio::ip::address_v4 ip_address = boost::asio::ip::make_address_v4(ip, ec);
-            boost::asio::ip::tcp::endpoint endpoint(ip_address, port);
+Connection::Connection(IP ip, PORT port) : socket(io_context), port(port) { 
+    try {
+        // Resolve the host and port to obtain endpoints
+        tcp::resolver resolver(io_context);
+        auto endpoints = resolver.resolve(ip, std::to_string(port));
 
-            acceptor = boost::asio::ip::tcp::acceptor(io_context);
-            GetAcceptor().open(endpoint.protocol());
-            GetAcceptor().bind(endpoint);
-            GetAcceptor().listen();
-            GetAcceptor().accept(socket); 
-        } catch (const boost::system::system_error& e) {
-            throw std::runtime_error(std::string("Connection error: ") + e.what());
-        }
+        // Connect the socket to the first available endpoint
+        boost::asio::connect(socket, endpoints);
+        std::cout << "Connected to the server!" << std::endl;
+    } catch (const boost::system::system_error& e) {
+        // Handle connection errors and print the error message
+        std::cerr << "Connection error: " << e.what() << std::endl;
     }
 }
-
-void Connection::StartIOContext() {
-    io_thread = std::thread([]() {
-        io_context.run();
-    });
-}
-
-void Connection::StopIOContext() {
-    io_context.stop();
-    if (io_thread.joinable()) {
-        io_thread.join();
-    }
-}
-
-boost::asio::io_context Connection::io_context;
-std::thread Connection::io_thread;
 
 // Constructor for establishing a connection to a remote server using a Host.
-Connection::Connection(Host host) : Connection(host.ip,host.port, true) {}
+Connection::Connection(Host host) : Connection(host.ip,host.port) {}
 
 // Constructor for initializing a server to listen on a specified port.
 Connection::Connection(PORT port) : socket(io_context), port(port) {

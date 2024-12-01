@@ -36,3 +36,4 @@ typedef std::string IP;
 #include "Connection.h"
 #include "Server.h"
 #include "ConnectionManager.h"
+#include "Whiteboard.h"
