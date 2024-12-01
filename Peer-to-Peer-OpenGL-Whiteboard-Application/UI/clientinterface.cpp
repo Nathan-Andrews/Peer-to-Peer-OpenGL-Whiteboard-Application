@@ -37,13 +37,24 @@ std :: string sessioncode;
 void ClientInterface::on_btnjoin_clicked()
 {
     // Get the text from the QLineEdit and convert it to std::string
-    sessioncode = ui->txtsessioncode->text().toStdString();
+    // sessioncode = ui->txtsessioncode->text().toStdString();
+
+    SessionCode sessionCode(ui->txtsessioncode->text().toStdString());
+
+    std::cout << "decoded: " << sessionCode.host.ip << ":" << sessionCode.host.port << std::endl;
+
+    {
+        std::lock_guard<std::mutex> lock(mtx);
+        formData->type = JOIN_SERVER;
+        formData->host = sessionCode.host;
+    }
+    cv.notify_all(); // Notify all waiting threads
 
     // Convert std::string to QString for displaying in QLabel
-    QString sessionCodeQString = QString::fromStdString(sessioncode);
+    // QString sessionCodeQString = QString::fromStdString(sessioncode);
 
     // Set the text of the QLabel to show the session code
-    ui->txtresultcode->setText("Session Code: " + sessionCodeQString);
+    // ui->txtresultcode->setText("Session Code: " + sessionCodeQString);
 }
 void ClientInterface::on_btncreatesession_clicked()
 {
