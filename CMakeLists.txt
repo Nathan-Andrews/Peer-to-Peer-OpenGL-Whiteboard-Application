@@ -12,18 +12,18 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 # Detect platform and configure platform-specific settings
 if(UNIX AND NOT APPLE)
-    set(LIBS GL GLU glfw pthread)
+    set(LIBS GL GLU pthread)
     set(BOOST_LIBS boost_system)
     include_directories(/usr/include /usr/local/include)
     link_directories(/usr/lib /usr/local/lib)
 elseif(APPLE)
-    set(LIBS glfw)
+    set(LIBS)
     set(BOOST_LIBS boost_system)
     include_directories(/opt/homebrew/include /usr/local/include)
     link_directories(/opt/homebrew/lib /usr/local/lib)
     set(CMAKE_EXE_LINKER_FLAGS "-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo")
 elseif(WIN32)
-    set(LIBS glfw3 opengl32 gdi32 user32 kernel32)
+    set(LIBS opengl32 gdi32 user32 kernel32)
     set(BOOST_LIBS boost_system-mt)
     include_directories(C:/boost/include C:/glfw/include)
     link_directories(C:/boost/lib C:/glfw/lib)
@@ -37,8 +37,17 @@ set(UIDIR ${SRCDIR}/UI)
 file(GLOB NON_UI_SRCS "${SRCDIR}/*.cpp")
 list(REMOVE_ITEM NON_UI_SRCS "${UIDIR}/clientinterface.cpp") # Exclude clientinterface.cpp from non-UI sources
 
-# Find Qt5
+# Find Qt6
 find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
+
+# Find GLEW
+find_package(GLEW REQUIRED)
+
+# Find GLFW
+find_package(glfw3 REQUIRED)
+
+# Find GLM
+find_package(GLM REQUIRED)
 
 # Add UI files
 set(UI_FILES ${UIDIR}/clientinterface.ui)
@@ -59,7 +68,13 @@ add_executable(app
 )
 
 # Include directories for non-UI and UI code
-target_include_directories(app PRIVATE ${SRCDIR} ${UIDIR})
+target_include_directories(app PRIVATE 
+    ${SRCDIR} 
+    ${UIDIR}
+    ${GLEW_INCLUDE_DIRS}  # Include GLEW
+    ${GLFW_INCLUDE_DIRS}  # Include GLFW
+    ${GLM_INCLUDE_DIRS}   # Include GLM
+)
 
 # Link libraries
 target_link_libraries(app
@@ -68,4 +83,7 @@ target_link_libraries(app
     Qt6::Core
     Qt6::Gui
     Qt6::Widgets
+    GLEW::GLEW          # Link GLEW
+    glfw3              # Link GLFW
+    glm::glm           # Link GLM (usually header-only, no linking needed but added here for consistency)
 )
