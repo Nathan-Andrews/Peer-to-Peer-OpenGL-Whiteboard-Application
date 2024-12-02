@@ -26,7 +26,7 @@ QT_END_NAMESPACE
 
 class Interface : public QMainWindow
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
     Interface(QWidget *parent = nullptr);

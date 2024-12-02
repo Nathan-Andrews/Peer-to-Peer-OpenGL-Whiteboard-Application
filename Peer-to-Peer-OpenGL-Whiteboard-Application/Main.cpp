@@ -67,7 +67,7 @@ void formThreadFunction() {
             else if (formData->type == JOIN_SERVER) {
                 manager = new ConnectionManager(formData->host);
 
-                sleep(1); // wait for connection
+                std::this_thread::sleep_for(std::chrono::seconds(1)); // wait for connection
 
                 // connection successful
                 if (manager->isConnected) {
@@ -140,7 +140,7 @@ int main(int argc, char* argv[]) {
 
     // closes the window when the server disconnects
     std::thread windowCloseThread([window]() {
-        while (manager->isConnected) sleep(1);
+        while (manager->isConnected) std::this_thread::sleep_for(std::chrono::seconds(1));
         glfwSetWindowShouldClose(window, GLFW_TRUE);
     });
 
