@@ -8,12 +8,13 @@
    a. [Download](https://www.boost.org/users/history/version_1_86_0.html) the 1.86.0 version for windows
    
    b. Extract the contents of the downloaded zip into `C:\boost_1_86_0`
-3. Install GLFW
+
+4. Install GLFW
 
    a. [Download](https://glfw.org/download) the windows pre-compiled binaries
    
    b. Extract the contents of the downloaded zip into `C:\GLFW`
-4. Install GLEW
+5. Install GLEW
 
    a. [Download](https://glew.sourceforge.net/) the windows pre-compiled binaries
    
@@ -39,6 +40,13 @@
 
    d. Select `custom installation` and select `Qt 6.8`.  You can deselect the design studio and creator stuff
 
+   e. Finish installing
+
+   f. Add the `QT VS Tools` extension to visual studio
+
+   g. Add QT version to the extension via the path to the installation, likely `C:\Qt\6.8.0\msvc2022_64`.  [More info](https://doc.qt.io/qtvstools/qtvstools-how-to-add-qt-versions.html)
+
+   
 ### Macos Setup
 1. Clone the repository
 2. Install Boost
@@ -58,10 +66,10 @@
    a. install with brew `brew install qt`
 
 ## Running
-### Running with visual studio
-1. Just run like any other project in Visual Studio
+### Running with Windows
+1. Open and run in Visual Studio
 
-### Running without visual studio
+### Running with MacOS
 1. Compile code `make`
 2. Run code `./app`
 
