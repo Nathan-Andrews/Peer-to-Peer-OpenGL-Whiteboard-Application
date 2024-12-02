@@ -1,0 +1,462 @@
+<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" FontFamily="Segoe UI" FontSize="12">
+  <FlowDocument.Tag><![CDATA[{
+  "timestamp": "2024-12-02 02:02:43",
+  "files": {
+    "C:\\Users\\nathan\\Desktop\\projects\\csce463\\project03\\Peer-to-Peer-OpenGL-Whiteboard-Application\\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj": {
+      "before": "7Vltb9s2EO7nAfsNM4QWiT/E8kuaNI2sIrVTw5idpHVSA4MBg5ZoW6skCiSVl637cftnO0okZfklctot6YoWaBKSd3x57njP8fT3L8+eWW9uA790jSnzSNg0apWqUcKhQ1wvnDWNmE/3Xhlv7J9/si4o+R07vNTGUxT7/BLRGeasabyNPd81SjBLCK0559Fr02TOHAeIVQLPoYSRKa84JDBdfI19EmFqBmwi1Mx6tdowYPZSyepyHHQoiaNSD02w3zTkgi0STr1ZTBGHDbJUGMTXjZa6oePHLm4abTyJZ5+HXtioKw3QyU1lJzKWme8UWxH/rAsf8SmhgZ1MYpm6nUpAR4rHOvWCzX3APkYMF2xPSj3FBlP0bg/2vxY7mOI/Qe6+rW2N2wM3Z5naQ5ccNmkK9/JbJIg8H2d+CN4RwqUBz604UWSUzK1k+yhEM0yLVTo+mSCfFQv2kbfFDgaYQiAonm2AmYgWLeLiYuGr7qgbckynyNlCejj3OJ4QRN3FmbfBXt79HPZOTCkOOViBAwBwtHnOBOtUlLm2llTGKlBoU3RzknpCgaQyaoGYNFahVGaqIlESUzBRgVTOnMWyV91xZv0C8QXba8kVy0PYBQLhdzmqkJCpcGV9bMno/DHlNbt2WKla5kq3jOW/4rsbQt001AtNy1RdUkJO14k91/7zaOrgI2dS26uj6tHe/iGa7h3VDtCeO63XXx666GV9v/6XJohER07zgRB+hgLMIrgM9gWGgxDx8zzCYaeXnf8kinzPSRjPMvNKciZgJZfcsJSFFTfp01bFae8VEdMkW8zAlFEtiAjlJXngpvF892NLcv0F4vPyqK8pvRVFFZkNVCIwC1OXS/BfNm8Jrp/riRjYNHae7+YIs/z5+a7afXmn2dxZIO4dQ2UCORVt5Fzv5V2E7Rxsq8MSuiuGk1V63oQi6mFmcxpjy1ztlwpqg5eE+Axz+7q238hoTfVK4dYcUeRAvBuA5FXoQSYFc+d6N2L/5bDlUorHA24K5POvITecEx8DBDOKgvOIe4H3R3IDpHk2Dj8p8DpVejzQvx9vhQzs8WD7Xny1+7AAnQ/MqXKOO09vOQ5FOgcBi8OjTz6xgHiThRLZRWrIKQ8g2mE3DcnbaagYN5hjeD4aX04OKpNexQMCORWk2fboMl0tsE0lBjHFW0AWiqLwrcc42wWmevA8O2VNWT3iIB/4qI04Uvyh6XEraL8GqCU6+AGVLiBsSDiSSPQDps0wKY/6/oBS9ywX18TV7yNRu9KXVrz+Idv1wiSVTaUXwsbDMlvlarpkIDsgKR8iGkIY7olamZ38hGQz15kmPCA6aPdac+x8khmSbmqBC4oh/jvwXCc02zuzh92zRv143D59e9U5HrfOzwbnvdPjF7sb5MvipbB+Jr2USLehXIZCB/ch5ZVbWu6VuZq5fG6r54WfMgwG8WRwxwBwGyZgkBZaZtall+xgeNIjnmbz3XR58cyQa28cVpvQa6aPzAygRc77Squre5NUEXeyt4sqFWVnzpn4fru/i8OkkpBIiVOAv8hDrx3SiMFTnHpA9o4SU2+fNQNaSbtVmnjqphbY5Bupl539z73sNEQTH7fO++2Ty3fEF3VxifW6EQ2KfMHgD3iKoQYFd1BqrRnQShtdNoV+43A6gWU+hkcvvHieOIo9WfyC0Hvipvki8mUREZJNKPSSpJ7Qej2aEML4uDZ+dTCuHkO703s3HHnp54m03U9/nea63/PRQeVVpToK2LVTr9br44N9rQbJa/rNQSS2x7mWedW1zHv3pH2sh8JZDOXlAUehC3VWm3EXatO1Q3Cf5SGtlE0t3Bdism3+5rwej53Ij5n4D5IvdlekgDhW+pTTfAsckDNkWg+6u8eQI8YBuJHvTbRJ4e+91FKia635hPgiDmvWWYNzG0NN0IXAIQpUompGsVJcGCkDaWcIL+qUj2f+9KZREatDMS6c+Y160kicEbwOBkaSnUaQ1Y1mPr5p1Fki854fiAXV30PPFd/6kubiSRbX02Z9jBikWDWXjS7nFA/LpRQjfuOc+oNNvzE2fVg1hqdfzbNHRVZjUcVuXY+RVff1xRX9ecH+Bw==",
+      "after": "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"
+    }
+  }
+}]]></FlowDocument.Tag>
+  <Section Margin="0,24" TextAlignment="Center">
+    <Paragraph FontSize="24" FontWeight="Bold" Margin="12,0">
+      <LineBreak />
+      <Span Foreground="Gray">Qt Visual Studio Tools</Span>
+    </Paragraph>
+    <Paragraph FontSize="42" Margin="12,0" FontWeight="Bold">
+      <Span TextDecorations="Underline">Project Format Conversion</Span>
+    </Paragraph>
+    <Paragraph Margin="12,8" FontSize="18">
+      <Span>Report generated on 2024-12-02 02:02:43</Span>
+    </Paragraph>
+  </Section>
+  <Section>
+    <Paragraph FontSize="32" FontWeight="Bold" Margin="12,0">
+      <Span>Files</Span>
+    </Paragraph>
+    <Paragraph Margin="24,12,0,0">
+      <Span FontFamily="Consolas" FontSize="14" Background="WhiteSmoke"><![CDATA[C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj]]></Span>
+      <LineBreak />
+      <Hyperlink NavigateUri="file://C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj?before">[Before]</Hyperlink>
+      <Hyperlink NavigateUri="file://C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj?after">[After]</Hyperlink>
+      <Hyperlink NavigateUri="file://C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj?diff&amp;before&amp;after">
+                        [Diff before/after]
+                    </Hyperlink>
+      <Hyperlink NavigateUri="file://C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj?diff&amp;before&amp;current">
+                        [Diff before/current]
+                    </Hyperlink>
+      <Hyperlink NavigateUri="file://C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj?diff&amp;after&amp;current">
+                        [Diff after/current]
+                    </Hyperlink>
+      <LineBreak />
+    </Paragraph>
+  </Section>
+  <Section>
+    <Paragraph FontSize="32" FontWeight="Bold" Margin="12,0">
+      <Span>Changes</Span>
+    </Paragraph>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Converting custom build steps to Qt/MSBuild items]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span><![CDATA[      ]]></Span><Span Background="LightCoral"><![CDATA[<AdditionalIncludeDirectories>C:\boost_1_86_0]]></Span><Span><![CDATA[;C:\GLFW\include;C:\GLM;C:\GLEW\include;C:\Qt\6.8.0\msvc2022_64\include;$(ProjectDir);$(ProjectDir)/UI</AdditionalIncludeDirectories>]]></Span>
+            </Paragraph>
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span><![CDATA[      ]]></Span><Span Background="LightGreen"><![CDATA[<AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;C:\boost_1_86_0]]></Span><Span><![CDATA[;C:\GLFW\include;C:\GLM;C:\GLEW\include;C:\Qt\6.8.0\msvc2022_64\include;$(ProjectDir);$(ProjectDir)/UI</AdditionalIncludeDirectories>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Enabling multi-processor compilation]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[      <MultiProcessorCompilation>true</MultiProcessorCompilation>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[      <MultiProcessorCompilation>true</MultiProcessorCompilation>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[      <MultiProcessorCompilation>true</MultiProcessorCompilation>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[      <MultiProcessorCompilation>true</MultiProcessorCompilation>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Project format version]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Keyword>QtVS_v304</Keyword>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Fallback for QTMSBUILD environment variable]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Default Qt properties]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <Import Project="$(QtMsBuild)\qt_defaults.props" Condition="Exists('$(QtMsBuild)\qt_defaults.props')" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Qt build settings]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Warn if Qt/MSBuild is not found]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') OR !Exists('$(QtMsBuild)\Qt.props')">]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  </Target>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Qt property sheet]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Import Project="$(QtMsBuild)\Qt.props" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Import Project="$(QtMsBuild)\Qt.props" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Import Project="$(QtMsBuild)\Qt.props" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Import Project="$(QtMsBuild)\Qt.props" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Qt targets]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\nathan\Desktop\projects\csce463\project03\Peer-to-Peer-OpenGL-Whiteboard-Application\Peer-to-Peer-OpenGL-Whiteboard-Application.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+  </Section>
+  <Section>
+    <Paragraph />
+  </Section>
+</FlowDocument>
+<!--RacwQdNDdoaW7zsHN0hdUSqD2snHVth3/qoG3ZgGi1U=-->

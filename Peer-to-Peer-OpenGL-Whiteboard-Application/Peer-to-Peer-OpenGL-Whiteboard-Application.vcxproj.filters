@@ -71,8 +71,16 @@
     <ClInclude Include="SessionCode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Interface.h">
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="UI\Interface.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="UI\Interface.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UI\Interface.pro" />
   </ItemGroup>
 </Project>
