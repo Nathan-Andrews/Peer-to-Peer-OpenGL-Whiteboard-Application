@@ -29,6 +29,16 @@
    
 ![image](https://github.com/user-attachments/assets/3c03097a-390f-4fc5-b5aa-9498ce22f3b8)
 
+6. Install Qt
+
+   a. [Download](https://www.qt.io/download-qt-installer-oss) the windows installer for the open source version (you may have to create an account)
+
+   b. Run the installer and follow the installation steps.
+   
+   c. Enter `C:\Qt` as the install location when prompted
+
+   d. Select `custom installation` and select `Qt 6.8`.  You can deselect the design studio and creator stuff
+
 ### Macos Setup
 1. Clone the repository
 2. Install Boost
@@ -43,7 +53,7 @@
 5. Install GLM
 
    a. install with brew `brew install glm`
-5. Install Qt
+6. Install Qt
 
    a. install with brew `brew install qt`
 

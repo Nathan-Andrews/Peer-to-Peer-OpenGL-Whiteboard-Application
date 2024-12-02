@@ -1,5 +1,5 @@
-#ifndef CLIENTINTERFACE_H
-#define CLIENTINTERFACE_H
+#ifndef Interface_H
+#define Interface_H
 
 #include "Source.h"
 #include "Globals.h"
@@ -20,26 +20,28 @@ struct FormData {
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class ClientInterface;
+class Interface;
 }
 QT_END_NAMESPACE
 
-class ClientInterface : public QMainWindow
+class Interface : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    ClientInterface(QWidget *parent = nullptr);
-    ~ClientInterface();
+    Interface(QWidget *parent = nullptr);
+    ~Interface();
 
 private slots:
-    void on_btnjoin_clicked();
+    void on_brnjoinsession_clicked();
 
-    void on_modeChanged(int index);
+    // void on_modeChanged(int index);
 
     void on_btncreatesession_clicked();
 
+    void on_btnendsession_clicked();
+
 private:
-    Ui::ClientInterface *ui;
+    Ui::Interface *ui;
 };
-#endif // CLIENTINTERFACE_H
+#endif // Interface_H

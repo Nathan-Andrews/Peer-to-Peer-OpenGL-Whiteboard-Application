@@ -95,8 +95,8 @@ int main(int argc, char* argv[]) {
 
     QApplication a(argc, argv);
     
-    // Create an instance of the ClientInterface class (the main window).
-    ClientInterface w(nullptr);
+    // Create an instance of the Interface class (the main window).
+    Interface w(nullptr);
 
     // Display the main window by calling the 'show()' method.
     w.show();
