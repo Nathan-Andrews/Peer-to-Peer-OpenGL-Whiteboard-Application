@@ -3,13 +3,13 @@
 
 ClientInterface::ClientInterface(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::ClientInterface)
+    , ui(new Ui::Interface)
 {
     ui->setupUi(this);
 
     // Connect the ComboBox's currentIndexChanged signal to the on_modeChanged slot
-    connect(ui->boxswitch, SIGNAL(currentIndexChanged(int)), this, SLOT(on_modeChanged(int)));
-    connect(ui->btnjoinsession, SIGNAL(clicked()), this, SLOT(on_btnjoin_clicked()));
+    // connect(ui->boxswitch, SIGNAL(currentIndexChanged(int)), this, SLOT(on_modeChanged(int)));
+    // connect(ui->btnjoinsession, SIGNAL(clicked()), this, SLOT(on_btnjoin_clicked()));
 }
 
 ClientInterface::~ClientInterface()
@@ -18,7 +18,7 @@ ClientInterface::~ClientInterface()
 }
 std :: string sessioncode;
 
-void ClientInterface::on_btnjoin_clicked()
+void ClientInterface::on_brnjoinsession_clicked()
 {
     // Get the text from the QLineEdit and convert it to std::string
     // sessioncode = ui->txtsessioncode->text().toStdString();
@@ -87,32 +87,41 @@ void ClientInterface::on_btncreatesession_clicked()
     QString sessionCodeQString = QString::fromStdString(sessioncode);
 
     ui->txtresultcode->setText("Session Code: " + sessionCodeQString);
+
+    ui->txtsessioncode->hide();
+    ui->brnjoinsession->hide();
+    ui->btncreatesession->hide();
 }
 
-void ClientInterface::on_modeChanged(int index)
-{
-
-     if (index == 1)
-    {
-        // server side
-        // Enable server-related UI components and disable client-related UI components
-         ui->lblserver->setText("Server");
-        ui->btncreatesession->setEnabled(true);   // Enable server-related actions
-        ui->btnjoinsession->setDisabled(true);// Disable client actions
-        ui->txtsessioncode->setDisabled(true); // Disable session code input
-        ui->lblclient->setText("");          // Clear session code label
-
-    }else if(index == 2)
-    {
-
-        ui->lblclient->setText("Client");
-        ui->btncreatesession->setDisabled(true);  // Disable server actions
-        ui->txtsessioncode->setEnabled(true);     // Enable session code input
-        ui->btnjoinsession->setEnabled(true);     // Enable client actions
-        ui->txtresultcode->setEnabled(true);
-        ui->lblserver->setText("");          // Optionally clear label
-
-    }
+void ClientInterface::on_btnendsession_clicked() {
+    // Close the window
+    this->close();
 }
+
+// void ClientInterface::on_modeChanged(int index)
+// {
+
+//      if (index == 1)
+//     {
+//         // server side
+//         // Enable server-related UI components and disable client-related UI components
+//          ui->lblserver->setText("Server");
+//         ui->btncreatesession->setEnabled(true);   // Enable server-related actions
+//         ui->btnjoinsession->setDisabled(true);// Disable client actions
+//         ui->txtsessioncode->setDisabled(true); // Disable session code input
+//         ui->lblclient->setText("");          // Clear session code label
+
+//     }else if(index == 2)
+//     {
+
+//         ui->lblclient->setText("Client");
+//         ui->btncreatesession->setDisabled(true);  // Disable server actions
+//         ui->txtsessioncode->setEnabled(true);     // Enable session code input
+//         ui->btnjoinsession->setEnabled(true);     // Enable client actions
+//         ui->txtresultcode->setEnabled(true);
+//         ui->lblserver->setText("");          // Optionally clear label
+
+//     }
+// }
 
 

@@ -33,13 +33,15 @@ public:
     ~ClientInterface();
 
 private slots:
-    void on_btnjoin_clicked();
+    void on_brnjoinsession_clicked();
 
-    void on_modeChanged(int index);
+    // void on_modeChanged(int index);
 
     void on_btncreatesession_clicked();
 
+    void on_btnendsession_clicked();
+
 private:
-    Ui::ClientInterface *ui;
+    Ui::Interface *ui;
 };
 #endif // CLIENTINTERFACE_H

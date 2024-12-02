@@ -11,8 +11,6 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QComboBox>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
@@ -20,82 +18,62 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_ClientInterface
+class Ui_Interface
 {
 public:
     QWidget *centralwidget;
-    QLabel *lblclient;
-    QPushButton *btnjoinsession;
     QLineEdit *txtsessioncode;
-    QLineEdit *txtresultcode;
-    QComboBox *boxswitch;
     QPushButton *btncreatesession;
-    QLabel *lblserver;
+    QPushButton *brnjoinsession;
+    QLineEdit *txtresultcode;
+    QPushButton *btnendsession;
 
-    void setupUi(QMainWindow *ClientInterface)
+    void setupUi(QMainWindow *Interface)
     {
-        if (ClientInterface->objectName().isEmpty())
-            ClientInterface->setObjectName("ClientInterface");
-        ClientInterface->resize(548, 437);
-        centralwidget = new QWidget(ClientInterface);
+        if (Interface->objectName().isEmpty())
+            Interface->setObjectName("Interface");
+        Interface->resize(527, 406);
+        Interface->setStyleSheet(QString::fromUtf8("font: 14pt \"Arial\";"));
+        centralwidget = new QWidget(Interface);
         centralwidget->setObjectName("centralwidget");
-        lblclient = new QLabel(centralwidget);
-        lblclient->setObjectName("lblclient");
-        lblclient->setGeometry(QRect(240, 40, 91, 31));
-        lblclient->setStyleSheet(QString::fromUtf8("font: 900 18pt \"Arial Black\";"));
-        btnjoinsession = new QPushButton(centralwidget);
-        btnjoinsession->setObjectName("btnjoinsession");
-        btnjoinsession->setGeometry(QRect(320, 200, 131, 31));
-        btnjoinsession->setStyleSheet(QString::fromUtf8("font: 16pt \"Arial\";"));
         txtsessioncode = new QLineEdit(centralwidget);
         txtsessioncode->setObjectName("txtsessioncode");
-        txtsessioncode->setGeometry(QRect(120, 130, 311, 31));
-        txtsessioncode->setStyleSheet(QString::fromUtf8("font: 14pt \"Arial\";"));
-        txtresultcode = new QLineEdit(centralwidget);
-        txtresultcode->setObjectName("txtresultcode");
-        txtresultcode->setGeometry(QRect(100, 290, 341, 41));
-        txtresultcode->setReadOnly(true);
-        boxswitch = new QComboBox(centralwidget);
-        boxswitch->addItem(QString());
-        boxswitch->addItem(QString());
-        boxswitch->addItem(QString());
-        boxswitch->addItem(QString());
-        boxswitch->setObjectName("boxswitch");
-        boxswitch->setGeometry(QRect(240, 90, 91, 24));
-        boxswitch->setStyleSheet(QString::fromUtf8("font: 14pt \"Arial\";"));
+        txtsessioncode->setGeometry(QRect(100, 100, 341, 31));
         btncreatesession = new QPushButton(centralwidget);
         btncreatesession->setObjectName("btncreatesession");
-        btncreatesession->setGeometry(QRect(120, 200, 161, 31));
+        btncreatesession->setGeometry(QRect(100, 170, 161, 31));
         btncreatesession->setStyleSheet(QString::fromUtf8("font: 16pt \"Arial\";"));
-        lblserver = new QLabel(centralwidget);
-        lblserver->setObjectName("lblserver");
-        lblserver->setGeometry(QRect(240, 40, 91, 31));
-        lblserver->setStyleSheet(QString::fromUtf8("font: 900 18pt \"Arial Black\";"));
-        ClientInterface->setCentralWidget(centralwidget);
+        brnjoinsession = new QPushButton(centralwidget);
+        brnjoinsession->setObjectName("brnjoinsession");
+        brnjoinsession->setGeometry(QRect(290, 170, 141, 31));
+        brnjoinsession->setStyleSheet(QString::fromUtf8("font: 16pt \"Arial\";"));
+        txtresultcode = new QLineEdit(centralwidget);
+        txtresultcode->setObjectName("txtresultcode");
+        txtresultcode->setGeometry(QRect(100, 280, 341, 31));
+        txtresultcode->setReadOnly(true);
+        btnendsession = new QPushButton(centralwidget);
+        btnendsession->setObjectName("btnendsession");
+        btnendsession->setGeometry(QRect(190, 220, 161, 31));
+        btnendsession->setStyleSheet(QString::fromUtf8("font: 16pt \"Arial\";"));
+        Interface->setCentralWidget(centralwidget);
 
-        retranslateUi(ClientInterface);
+        retranslateUi(Interface);
 
-        QMetaObject::connectSlotsByName(ClientInterface);
+        QMetaObject::connectSlotsByName(Interface);
     } // setupUi
 
-    void retranslateUi(QMainWindow *ClientInterface)
+    void retranslateUi(QMainWindow *Interface)
     {
-        ClientInterface->setWindowTitle(QCoreApplication::translate("ClientInterface", "ClientInterface", nullptr));
-        lblclient->setText(QString());
-        btnjoinsession->setText(QCoreApplication::translate("ClientInterface", "Join Server", nullptr));
-        boxswitch->setItemText(0, QString());
-        boxswitch->setItemText(1, QCoreApplication::translate("ClientInterface", "Server", nullptr));
-        boxswitch->setItemText(2, QCoreApplication::translate("ClientInterface", "Client", nullptr));
-        boxswitch->setItemText(3, QString());
-
-        btncreatesession->setText(QCoreApplication::translate("ClientInterface", "Create Session", nullptr));
-        lblserver->setText(QString());
+        Interface->setWindowTitle(QCoreApplication::translate("Interface", "Interface", nullptr));
+        btncreatesession->setText(QCoreApplication::translate("Interface", "Create Session", nullptr));
+        brnjoinsession->setText(QCoreApplication::translate("Interface", "Join Server", nullptr));
+        btnendsession->setText(QCoreApplication::translate("Interface", "End Session", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class ClientInterface: public Ui_ClientInterface {};
+    class Interface: public Ui_Interface {};
 } // namespace Ui
 
 QT_END_NAMESPACE
