@@ -40,6 +40,11 @@ string SessionCode::generateCode() {
 void SessionCode::decodeSession(string encryptedCode) {
 	vector<unsigned char> message = base64Decoder(encryptedCode);
 
+	if (message.size() != 6) {
+		cerr << "Incorrect parsing! Likely to have given incorrect code." << endl;
+		exit(-1);
+	}
+
 	this->host.ip = to_string(message[0]) + "." + to_string(message[1]) + "." + to_string(message[2]) + "." + to_string(message[3]);
 	this->host.port = (message[4] << 8) | message[5];
 }
@@ -70,6 +75,31 @@ string SessionCode::base64Encoder(vector<unsigned char> encoded) {
 vector<unsigned char> SessionCode::base64Decoder(string encryptedCode) {
 	vector<unsigned char> message;
 	vector<int> decode(256, -1);
+
+	//Error checking:
+	if (encryptedCode.size() % 4 != 0 || encryptedCode.size() < 1) {
+		cerr << "Incorrect code length, must be a multiple of 4!" << endl;
+		exit(-1);
+	}
+
+	for (int i = 0; i < encryptedCode.size(); ++i) {
+		if (isalnum(encryptedCode[i]) == false) {
+			if (encryptedCode[i] != '+' || encryptedCode[i] != '/' || encryptedCode[i] != '=') {
+				cerr << "Code contains incorrect character type!" << endl;
+				exit(-1);
+			}
+		}
+	}
+
+	size_t findEqual = encryptedCode.find('=');
+	if (findEqual != string::npos) {
+		if (findEqual != (encryptedCode.size() - 1)) {
+			if (encryptedCode.back() != '=') {
+				cerr << "Invalid padding!" << endl;
+				exit(-1);
+			}
+		}
+	}
 
 	for (int i = 0; i < 64; ++i) {
 		decode[base64[i]] = i;
