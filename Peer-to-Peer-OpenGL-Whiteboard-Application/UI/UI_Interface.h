@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'clientinterface.ui'
+** Form generated from reading UI file 'Interface.ui'
 **
 ** Created by: Qt User Interface Compiler version 6.7.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef UI_CLIENTINTERFACE_H
-#define UI_CLIENTINTERFACE_H
+#ifndef UI_INTERFACE_H
+#define UI_INTERFACE_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -78,4 +78,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // UI_CLIENTINTERFACE_H
+#endif // UI_INTERFACE_H

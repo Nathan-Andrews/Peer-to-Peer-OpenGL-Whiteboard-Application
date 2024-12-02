@@ -1,7 +1,7 @@
 #include "Source.h"
 
 
-ClientInterface::ClientInterface(QWidget *parent)
+Interface::Interface(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Interface)
 {
@@ -12,13 +12,13 @@ ClientInterface::ClientInterface(QWidget *parent)
     // connect(ui->btnjoinsession, SIGNAL(clicked()), this, SLOT(on_btnjoin_clicked()));
 }
 
-ClientInterface::~ClientInterface()
+Interface::~Interface()
 {
     delete ui;
 }
 std :: string sessioncode;
 
-void ClientInterface::on_brnjoinsession_clicked()
+void Interface::on_brnjoinsession_clicked()
 {
     // Get the text from the QLineEdit and convert it to std::string
     // sessioncode = ui->txtsessioncode->text().toStdString();
@@ -61,7 +61,7 @@ void ClientInterface::on_brnjoinsession_clicked()
         }
     }
 }
-void ClientInterface::on_btncreatesession_clicked()
+void Interface::on_btncreatesession_clicked()
 {
     {
         std::lock_guard<std::mutex> lock(form_mtx);
@@ -93,12 +93,12 @@ void ClientInterface::on_btncreatesession_clicked()
     ui->btncreatesession->hide();
 }
 
-void ClientInterface::on_btnendsession_clicked() {
+void Interface::on_btnendsession_clicked() {
     // Close the window
     this->close();
 }
 
-// void ClientInterface::on_modeChanged(int index)
+// void Interface::on_modeChanged(int index)
 // {
 
 //      if (index == 1)

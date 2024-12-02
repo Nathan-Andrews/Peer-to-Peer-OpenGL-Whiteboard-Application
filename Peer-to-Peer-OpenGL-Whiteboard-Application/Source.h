@@ -46,5 +46,5 @@ struct FormData;
 #include "DrawAction.h"
 #include "Whiteboard.h"
 #include "SessionCode.h"
-#include "ui_clientinterface.h"
-#include "clientinterface.h"
+#include "UI_Interface.h"
+#include "Interface.h"

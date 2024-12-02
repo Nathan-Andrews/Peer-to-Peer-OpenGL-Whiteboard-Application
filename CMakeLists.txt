@@ -35,7 +35,7 @@ set(UIDIR ${SRCDIR}/UI)
 
 # Add non-UI source files
 file(GLOB NON_UI_SRCS "${SRCDIR}/*.cpp")
-list(REMOVE_ITEM NON_UI_SRCS "${UIDIR}/clientinterface.cpp") # Exclude clientinterface.cpp from non-UI sources
+list(REMOVE_ITEM NON_UI_SRCS "${UIDIR}/Interface.cpp") # Exclude clientinterface.cpp from non-UI sources
 
 # Find Qt6
 find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
@@ -50,10 +50,10 @@ find_package(glfw3 REQUIRED)
 find_package(GLM REQUIRED)
 
 # Add UI files
-set(UI_FILES ${UIDIR}/clientinterface.ui)
-set(MOC_FILES ${UIDIR}/clientinterface.h)
-set(UI_SRCS ${UIDIR}/clientinterface.cpp)
-set(UI_HEADERS ${UIDIR}/ui_clientinterface.h)
+set(UI_FILES ${UIDIR}/Interface.ui)
+set(MOC_FILES ${UIDIR}/Interface.h)
+set(UI_SRCS ${UIDIR}/Interface.cpp)
+set(UI_HEADERS ${UIDIR}/UI_Interface.h)
 
 # Generate Qt-related files
 qt6_wrap_ui(UI_HEADERS_GENERATED ${UI_FILES})
