@@ -1,5 +1,29 @@
 # Peer-to-Peer-OpenGL-Whiteboard-Application
 
+## Table of Contents
+[Introduction](#introduction)  
+[Features](#features)  
+[Technologies Used](#technologies-used)  
+[Setup](#setup)  
+[Running](#running)  
+[Development](#development)  
+[Credits](#credits)  
+
+## Introduction
+
+## Features
+
+## Technologies Used
+Languages: [C++](https://cplusplus.com/)
+
+Libraries: 
+
+   * Networking: [Boost.Asio](https://www.boost.org/doc/libs/1_84_0/doc/html/boost_asio.html)
+   
+   * Graphics: [GLFW](https://www.glfw.org/), [GLEW](https://glew.sourceforge.net/), [GLM](https://github.com/g-truc/glm)
+   
+   * GUI: [Qt](https://www.qt.io/download-open-source)
+
 ## Setup
 ### Windows Setup
 1. Clone the repository
@@ -134,3 +158,5 @@ int main() {
 }
 
 ```
+
+## Credits
