@@ -10,6 +10,8 @@
 [Credits](#credits)  
 
 ## Introduction
+This project is a Peer-to-Peer whiteboard application in C++.
+The application allows multiple clients to join a session where they can draw on a shared whiteboard. Drawings from each client will be transmitted via network sockets to all other clients on the LAN, ensuring real-time updates and synchronized whiteboard views across all clients.
 
 ## Features
 
@@ -160,3 +162,17 @@ int main() {
 ```
 
 ## Credits
+[Nathan Andrews](https://github.com/Nathan-Andrews)
+    - Made the networking code to host a server send messages between peers, and made the system for managing the connections. Also integrated the other systems together.
+    
+[Caleb Surovik](https://github.com/coolest)
+    - Made the serializer and deserializer to handle whiteboard actions.
+    
+[Caleb Austin](https://github.com/EpicExplode)
+    - Made the whiteboard window in OpenGL
+
+[Raghav Sood](https://github.com/soodraghav15)
+    - Made the GUI for creating and joining sessions.
+    
+[Alex Cox](https://github.com/AlexTCox)
+    - Made the system for creating and handling session codes.
